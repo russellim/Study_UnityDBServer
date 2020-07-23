@@ -13,7 +13,7 @@ public class Web : MonoBehaviour
 
         //StartCoroutine(Login("testuser1", "123456"));
 
-        StartCoroutine(RegisterUser("testuser3", "123456"));
+        //StartCoroutine(RegisterUser("testuser3", "123456"));
     }
 
     IEnumerator GetRequest(string uri)
@@ -37,7 +37,7 @@ public class Web : MonoBehaviour
         }
     }
 
-    IEnumerator Login(string username, string password)
+    public IEnumerator Login(string username, string password)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
@@ -58,7 +58,7 @@ public class Web : MonoBehaviour
         }
     }
 
-    IEnumerator RegisterUser(string username, string password)
+    public IEnumerator RegisterUser(string username, string password)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
