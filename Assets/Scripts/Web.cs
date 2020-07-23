@@ -56,13 +56,22 @@ public class Web : MonoBehaviour
             if (www.isNetworkError || www.isHttpError)
             {
                 Debug.Log(www.error);
+                Main.Instance.DisplayErrorMessage("Server connection failed.");
             }
             else
             {
-                //로그인 성공.
-                Debug.Log(www.downloadHandler.text);
-                Main.Instance.UserInfo.SetCredentials(username, password);
-                Main.Instance.UserInfo.SetID(www.downloadHandler.text);
+                string resultText = www.downloadHandler.text;
+                Debug.Log(resultText);
+
+                if(resultText == "Wrong Credentials." || resultText == "Username does not exists.")
+                {
+                    Main.Instance.DisplayErrorMessage("Check your username and password again.");
+                }
+                else
+                {
+                    Main.Instance.UserInfo.SetCredentials(username, password);
+                    Main.Instance.UserInfo.SetID(resultText);
+                }
             }
         }
     }

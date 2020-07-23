@@ -8,19 +8,17 @@ public class Login : MonoBehaviour
     public InputField UsernameInput;
     public InputField PasswordInput;
     public Button LoginButton;
-    public Button RegisterButton;
 
-
-    private void Start()
+    public void OnClickLoginButton()
     {
-        LoginButton.onClick.AddListener(() =>
+        StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
+    }
+
+    private void Update()
+    {
+        if (UsernameInput.isFocused && Input.GetKeyDown(KeyCode.Tab))
         {
-            StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
-        });
-
-        RegisterButton.onClick.AddListener(() =>
-         {
-
-         });
+            PasswordInput.ActivateInputField();
+        }
     }
 }
