@@ -76,7 +76,7 @@ public class Web : MonoBehaviour
         }
     }
 
-    public IEnumerator RegisterUser(string username, string password)
+    public IEnumerator RegisterUser(string username, string password, GameObject go = null)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
@@ -89,10 +89,21 @@ public class Web : MonoBehaviour
             if (www.isNetworkError || www.isHttpError)
             {
                 Debug.Log(www.error);
+                Main.Instance.DisplayErrorMessage("Server connection failed.");
             }
             else
             {
-                Debug.Log(www.downloadHandler.text);
+                string resultText = www.downloadHandler.text;
+                Debug.Log(resultText);
+
+                if (resultText == "Username is already taken.")
+                {
+                    Main.Instance.DisplayErrorMessage(resultText);
+                }
+                else
+                {
+                    go.SetActive(false);
+                }
             }
         }
     }

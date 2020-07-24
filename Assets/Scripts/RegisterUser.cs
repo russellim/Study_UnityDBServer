@@ -18,13 +18,12 @@ public class RegisterUser : MonoBehaviour
         {
             if(PasswordInput.text == ConfirmPasswordInput.text)
             {
-                StartCoroutine(Main.Instance.Web.RegisterUser(UsernameInput.text, PasswordInput.text));
-                gameObject.SetActive(false);
-                CloseWindow();
+                StartCoroutine(Main.Instance.Web.RegisterUser(UsernameInput.text, PasswordInput.text, gameObject));
+                //CloseWindow();
             }
             else
             {
-                Debug.Log("Check Your Password.");
+                Main.Instance.DisplayErrorMessage("Passwords are different.");
             }
         });
 
@@ -39,6 +38,23 @@ public class RegisterUser : MonoBehaviour
         });
     }
 
+    private void Update()
+    {
+        if (UsernameInput.isFocused && Input.GetKeyDown(KeyCode.Tab))
+        {
+            PasswordInput.ActivateInputField();
+        }
+        if (PasswordInput.isFocused && Input.GetKeyDown(KeyCode.Tab))
+        {
+            ConfirmPasswordInput.ActivateInputField();
+        }
+    }
+
+    private void OnEnable()
+    {
+        ResetWindow();
+    }
+
     void ResetWindow()
     {
         UsernameInput.text = "";
@@ -48,7 +64,6 @@ public class RegisterUser : MonoBehaviour
 
     void CloseWindow()
     {
-        ResetWindow();
         gameObject.SetActive(false);
     }
 }
