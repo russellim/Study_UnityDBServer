@@ -10,6 +10,8 @@ public class Main : MonoBehaviour
     public Web Web;
     public UserInfo UserInfo;
 
+    public GameObject UserProfile;
+
     public Animator ErrorMessageAnim;
     public Text ErrorMessageText; 
 

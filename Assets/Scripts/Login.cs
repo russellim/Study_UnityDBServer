@@ -11,7 +11,7 @@ public class Login : MonoBehaviour
 
     public void OnClickLoginButton()
     {
-        StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
+        StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text, gameObject));
     }
 
     private void Update()

@@ -16,11 +16,6 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUser("testuser3", "123456"));
     }
 
-    public void ShowUserItems()
-    {
-        StartCoroutine(GetItemsIDs(Main.Instance.UserInfo.UserID));
-    }
-
     IEnumerator GetRequest(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
@@ -43,7 +38,7 @@ public class Web : MonoBehaviour
     }
 
 
-    public IEnumerator Login(string username, string password)
+    public IEnumerator Login(string username, string password, GameObject go = null)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
@@ -63,15 +58,20 @@ public class Web : MonoBehaviour
                 string resultText = www.downloadHandler.text;
                 Debug.Log(resultText);
 
-                if(resultText == "Wrong Credentials." || resultText == "Username does not exists.")
+                if(resultText.Contains("Wrong Credentials.") || resultText.Contains("Username does not exists."))
                 {
                     Main.Instance.DisplayErrorMessage("Check your username and password again.");
                 }
                 else
                 {
+                    // 로그인 성공.
                     Main.Instance.UserInfo.SetCredentials(username, password);
                     Main.Instance.UserInfo.SetID(resultText);
+
+                    Main.Instance.UserProfile.SetActive(true);
+                    go.SetActive(false);
                 }
+
             }
         }
     }
@@ -96,7 +96,7 @@ public class Web : MonoBehaviour
                 string resultText = www.downloadHandler.text;
                 Debug.Log(resultText);
 
-                if (resultText == "Username is already taken.")
+                if (resultText.Contains("Username is already taken."))
                 {
                     Main.Instance.DisplayErrorMessage(resultText);
                 }
@@ -108,7 +108,7 @@ public class Web : MonoBehaviour
         }
     }
 
-    IEnumerator GetItemsIDs(string userID)
+    public IEnumerator GetItemsIDs(string userID, System.Action<string> callback)
     {
         WWWForm form = new WWWForm();
         form.AddField("userid", userID);
@@ -123,13 +123,42 @@ public class Web : MonoBehaviour
             }
             else
             {
+                string jsonArray = www.downloadHandler.text;
+                Debug.Log(jsonArray);
+
+                //Call callback function to pass results
+                //와우 코루틴에서 반환값이 생기넹.
+                callback(jsonArray);
+            }
+        }
+
+    }
+
+    public IEnumerator GetItem(string itemID, System.Action<string> callback)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("itemid", itemID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/unityBackendTutorial/GetItem.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
                 Debug.Log(www.downloadHandler.text);
 
                 string jsonArray = www.downloadHandler.text;
 
                 //Call callback function to pass results
+                //와우 코루틴에서 반환값이 생기넹.
+                callback(jsonArray);
             }
         }
 
     }
 }
+

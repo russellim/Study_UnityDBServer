@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
     // atfer the whole array is created.
     echo json_encode($rows);
 } else {
-  echo "0 results";
+  echo "0";
 }
 $conn->close();
 
