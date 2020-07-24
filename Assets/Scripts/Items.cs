@@ -11,8 +11,15 @@ public class Items : MonoBehaviour
     Action<string> _getItemInfoCallback;
     public GameObject ItemUI;
 
-    private void Start()
+    private void OnEnable()
     {
+        if(transform.childCount != 0)
+        {
+            for (int i = 0; i < transform.childCount; i++) 
+            { 
+                Destroy(transform.GetChild(i).gameObject); 
+            }
+        }
         // Define callback.
         _createItemsCallback = (jsonArrayString) => 
         {

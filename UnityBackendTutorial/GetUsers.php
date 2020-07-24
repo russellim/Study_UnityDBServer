@@ -1,19 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "unitybackendtutorial";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully, now we will show the users.<br><br>";
-
+require 'ConnectionSettings.php';
 
 $sql = "SELECT username, level FROM users";
 $result = $conn->query($sql);

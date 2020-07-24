@@ -9,6 +9,7 @@ public class Main : MonoBehaviour
 
     public Web Web;
     public UserInfo UserInfo;
+    public Login Login;
 
     public GameObject UserProfile;
 
@@ -26,5 +27,14 @@ public class Main : MonoBehaviour
     {
         ErrorMessageText.text = ErrorText;
         ErrorMessageAnim.Play("ErrorTextAnim");
+    }
+
+    public void OnClickLogoutButton()
+    {
+        UserInfo.SetCredentials(null, null);
+        UserInfo.SetID(null);
+        UserProfile.SetActive(false);
+        Login.PasswordInput.text = "";
+        Login.gameObject.SetActive(true);
     }
 }
