@@ -5,19 +5,21 @@ using UnityEngine.UI;
 using System;
 using SimpleJSON;
 
-public class Items : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
     Action<string> _createItemsCallback;
     Action<string> _getItemInfoCallback;
+    Action<Sprite> _getItemIconCallback;
     public GameObject ItemUI;
+    public Transform parent;
 
     private void OnEnable()
     {
-        if(transform.childCount != 0)
+        if(parent.childCount != 0)
         {
-            for (int i = 0; i < transform.childCount; i++) 
+            for (int i = 0; i < parent.childCount; i++) 
             { 
-                Destroy(transform.GetChild(i).gameObject); 
+                Destroy(parent.GetChild(i).gameObject); 
             }
         }
         // Define callback.
@@ -50,6 +52,7 @@ public class Items : MonoBehaviour
             // Create local variables.
             bool IsDone = false;    // 다운로드 끝?
             string itemId = jsonArray[i].AsObject["itemid"];
+            string id = jsonArray[i].AsObject["id"];
 
             JSONObject ItemInfoJson = new JSONObject();
             // Create a callback to get the information from Web.cs.
@@ -59,7 +62,6 @@ public class Items : MonoBehaviour
                 JSONArray tempArray = JSON.Parse(itemInfo) as JSONArray;
                 ItemInfoJson = tempArray[0].AsObject;
             };
-
             StartCoroutine(Main.Instance.Web.GetItem(itemId, _getItemInfoCallback));
 
             // Wait until the callback is called from WEB (info finished downloading).
@@ -67,12 +69,30 @@ public class Items : MonoBehaviour
 
             // Instantiate GameObject.
             GameObject ItemOB = Instantiate(ItemUI);
-            ItemOB.transform.SetParent(transform);
+            Item item = ItemOB.AddComponent<Item>();
+            item.ID = id;
+            item.ItemID = itemId;
+            ItemOB.transform.SetParent(parent);
 
             // Fill Information.
             ItemOB.transform.Find("Name").GetComponent<Text>().text = ItemInfoJson["name"];
             ItemOB.transform.Find("Price").GetComponent<Text>().text = ItemInfoJson["price"];
             ItemOB.transform.Find("Description").GetComponent<Text>().text = ItemInfoJson["description"];
+
+            // Create a callback to get the sprite from Web.cs.
+            _getItemIconCallback = (downloadedSprite) =>
+            {
+                ItemOB.transform.Find("Image").GetComponent<Image>().sprite = downloadedSprite;
+            };
+            StartCoroutine(Main.Instance.Web.GetItemIcon(itemId, _getItemIconCallback));
+
+            // Set Sell Button.
+            // 각 버튼에 대해 리스너 넣어줌.
+            // id, itemID를 이미 구해놔서 파라미터 적용이 쉽다 이말이야.
+            ItemOB.transform.Find("SellButton").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                StartCoroutine(Main.Instance.Web.SellItem(id, itemId, Main.Instance.UserInfo.UserID));
+            });
 
             // continue to the next item.
         }

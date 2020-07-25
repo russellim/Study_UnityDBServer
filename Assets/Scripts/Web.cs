@@ -131,7 +131,6 @@ public class Web : MonoBehaviour
                 callback(jsonArray);
             }
         }
-
     }
 
     public IEnumerator GetItem(string itemID, System.Action<string> callback)
@@ -158,7 +157,57 @@ public class Web : MonoBehaviour
                 callback(jsonArray);
             }
         }
+    }
 
+    public IEnumerator GetItemIcon(string itemID, System.Action<Sprite> callback)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("itemid", itemID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/unityBackendTutorial/GetItemIcon.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                byte[] bytes = www.downloadHandler.data;
+
+                // Create texture2D.
+                Texture2D texture = new Texture2D(2, 2);
+                texture.LoadImage(bytes);
+
+                //Create sprite
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                callback(sprite);
+            }
+        }
+    }
+
+    public IEnumerator SellItem(string ID, string itemID, string userID)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("id", ID);
+        form.AddField("itemid", itemID);
+        form.AddField("userid", userID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/unityBackendTutorial/SellItem.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
     }
 }
 

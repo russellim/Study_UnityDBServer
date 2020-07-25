@@ -6,7 +6,7 @@ require 'ConnectionSettings.php';
 $userID = $_POST["userid"];
 
 
-$sql = "SELECT itemid FROM usersitems WHERE userID = '" . $userID . "'";
+$sql = "SELECT id, itemid FROM usersitems WHERE userID = '" . $userID . "'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
