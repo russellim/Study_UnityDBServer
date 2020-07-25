@@ -9,7 +9,7 @@ public class ItemManager : MonoBehaviour
 {
     Action<string> _createItemsCallback;
     Action<string> _getItemInfoCallback;
-    Action<Sprite> _getItemIconCallback;
+    Action<byte[]> _getItemIconCallback;
     public GameObject ItemUI;
     public Transform parent;
 
@@ -79,12 +79,34 @@ public class ItemManager : MonoBehaviour
             ItemOB.transform.Find("Price").GetComponent<Text>().text = ItemInfoJson["price"];
             ItemOB.transform.Find("Description").GetComponent<Text>().text = ItemInfoJson["description"];
 
-            // Create a callback to get the sprite from Web.cs.
-            _getItemIconCallback = (downloadedSprite) =>
+            // 1. Get bytes instead of sprite.
+            // 2. Try to get image.
+            // 3. Download image only if we couldn't get image.
+            // 4. Save image in our device of we downloaded it.
+            // 5. Convert bytes into sprite here.
+
+            byte[] bytes = ImageManager.Instance.LoadImage(itemId);
+
+            if(bytes.Length == 0)
             {
-                ItemOB.transform.Find("Image").GetComponent<Image>().sprite = downloadedSprite;
-            };
-            StartCoroutine(Main.Instance.Web.GetItemIcon(itemId, _getItemIconCallback));
+                // Create a callback to get the sprite from Web.cs.
+                _getItemIconCallback = (downloadedBytes) =>
+                {
+                    Sprite sprite = ImageManager.Instance.BytesToSprite(downloadedBytes);
+                    ItemOB.transform.Find("Image").GetComponent<Image>().sprite = sprite;
+                    ImageManager.Instance.SaveImage(itemId, downloadedBytes);
+                };
+                StartCoroutine(Main.Instance.Web.GetItemIcon(itemId, _getItemIconCallback));
+            }
+            // Load from device.
+            else
+            {
+                Sprite sprite = ImageManager.Instance.BytesToSprite(bytes);
+                ItemOB.transform.Find("Image").GetComponent<Image>().sprite = sprite;
+            }
+
+
+
 
             // Set Sell Button.
             // 각 버튼에 대해 리스너 넣어줌.
