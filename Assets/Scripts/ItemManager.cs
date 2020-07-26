@@ -76,7 +76,7 @@ public class ItemManager : MonoBehaviour
 
             // Fill Information.
             ItemOB.transform.Find("Name").GetComponent<Text>().text = ItemInfoJson["name"];
-            ItemOB.transform.Find("Price").GetComponent<Text>().text = ItemInfoJson["price"];
+            ItemOB.transform.Find("Price").GetComponent<Text>().text = ItemInfoJson["price"] + " G";
             ItemOB.transform.Find("Description").GetComponent<Text>().text = ItemInfoJson["description"];
 
             // 1. Get bytes instead of sprite.

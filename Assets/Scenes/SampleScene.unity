@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2549,7 +2549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72, y: 18}
+  m_AnchoredPosition: {x: 72, y: 4}
   m_SizeDelta: {x: 201.18051, y: 29.111206}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1044471666
@@ -2573,18 +2573,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: dab90a45cedf47b4291bd9816c597551, type: 3}
-    m_FontSize: 21
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 3
+    m_MinSize: 4
+    m_MaxSize: 50
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Level
+  m_Text: Level 1
 --- !u!222 &1044471667
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2649,8 +2649,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 70c500e3f9a702743946d084c36b42c6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2701,7 +2701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72, y: -12.7}
+  m_AnchoredPosition: {x: 72, y: -43}
   m_SizeDelta: {x: 201.18051, y: 29.111206}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1097555530
@@ -2725,18 +2725,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: dab90a45cedf47b4291bd9816c597551, type: 3}
-    m_FontSize: 21
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 3
+    m_MinSize: 4
+    m_MaxSize: 50
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Coins
+  m_Text: 1 G
 --- !u!222 &1097555531
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2901,8 +2901,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -3784588032340460583, guid: 6217b7e11307ad64884406331d3ca2ce,
+    type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2991,18 +2992,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: dab90a45cedf47b4291bd9816c597551, type: 3}
-    m_FontSize: 21
-    m_FontStyle: 0
+    m_FontSize: 26
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: User Name
+  m_Text: username
 --- !u!222 &1218786437
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4607,6 +4608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ac6aedc4c31ba40a3f312663eae0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UserNameText: {fileID: 1218786436}
+  UserLevelText: {fileID: 1044471666}
+  UserCoinsText: {fileID: 1097555530}
 --- !u!114 &2071637313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4969,17 +4973,17 @@ PrefabInstance:
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 533.7312
       objectReference: {fileID: 0}
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -76.48718
       objectReference: {fileID: 0}
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1047.4624
       objectReference: {fileID: 0}
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}
@@ -4994,7 +4998,7 @@ PrefabInstance:
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}
@@ -5004,7 +5008,7 @@ PrefabInstance:
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7644912525747466873, guid: c82b379d3d9d0384f98d1e587eb63326,
         type: 3}

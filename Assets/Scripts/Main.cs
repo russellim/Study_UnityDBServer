@@ -31,7 +31,7 @@ public class Main : MonoBehaviour
 
     public void OnClickLogoutButton()
     {
-        UserInfo.SetCredentials(null, null);
+        UserInfo.SetCredentials(null, null, null, null);
         UserInfo.SetID(null);
         UserProfile.SetActive(false);
         Login.PasswordInput.text = "";

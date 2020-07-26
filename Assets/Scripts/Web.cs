@@ -38,7 +38,7 @@ public class Web : MonoBehaviour
     }
 
 
-    public IEnumerator Login(string username, string password, GameObject go = null)
+    public IEnumerator Login(string username, string password, System.Action<string> callback)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
@@ -65,11 +65,7 @@ public class Web : MonoBehaviour
                 else
                 {
                     // 로그인 성공.
-                    Main.Instance.UserInfo.SetCredentials(username, password);
-                    Main.Instance.UserInfo.SetID(resultText);
-
-                    Main.Instance.UserProfile.SetActive(true);
-                    go.SetActive(false);
+                    callback(resultText);
                 }
 
             }

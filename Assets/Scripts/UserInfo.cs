@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class UserInfo : MonoBehaviour
 {
@@ -8,10 +9,16 @@ public class UserInfo : MonoBehaviour
     string Level;
     string Coins;
 
-    public void SetCredentials(string username, string userpassword)
+    public Text UserNameText;
+    public Text UserLevelText;
+    public Text UserCoinsText;
+
+    public void SetCredentials(string username, string userpassword, string userlevel, string usercoins)
     {
-        UserName = username;
+        UserName = UserNameText.text = username;
         UserPassword = userpassword;
+        UserLevelText.text = "Level " + userlevel;
+        UserCoinsText.text = usercoins + " Gold";
     }
 
     public void SetID(string id)
