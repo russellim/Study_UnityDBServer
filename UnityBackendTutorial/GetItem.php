@@ -6,7 +6,7 @@ require 'ConnectionSettings.php';
 $itemID = $_POST["itemid"];
 
 
-$sql = "SELECT name, description, price FROM items where id = '" . $itemID . "'";
+$sql = "SELECT name, description, price, imgver FROM items where id = '" . $itemID . "'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

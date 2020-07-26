@@ -85,7 +85,9 @@ public class ItemManager : MonoBehaviour
             // 4. Save image in our device of we downloaded it.
             // 5. Convert bytes into sprite here.
 
-            byte[] bytes = ImageManager.Instance.LoadImage(itemId);
+            int imgVer = ItemInfoJson["imgver"].AsInt;
+
+            byte[] bytes = ImageManager.Instance.LoadImage(itemId, imgVer);
 
             if(bytes.Length == 0)
             {
@@ -94,7 +96,8 @@ public class ItemManager : MonoBehaviour
                 {
                     Sprite sprite = ImageManager.Instance.BytesToSprite(downloadedBytes);
                     ItemOB.transform.Find("Image").GetComponent<Image>().sprite = sprite;
-                    ImageManager.Instance.SaveImage(itemId, downloadedBytes);
+                    ImageManager.Instance.SaveImage(itemId, downloadedBytes, imgVer);
+                    ImageManager.Instance.SaveVersionJson();
                 };
                 StartCoroutine(Main.Instance.Web.GetItemIcon(itemId, _getItemIconCallback));
             }

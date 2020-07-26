@@ -174,6 +174,8 @@ public class Web : MonoBehaviour
             }
             else
             {
+                Debug.Log("DOWNLOADING ICON: " + itemID);
+                // byte는 .data!
                 byte[] bytes = www.downloadHandler.data;
                 callback(bytes);
             }
