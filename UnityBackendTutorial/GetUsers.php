@@ -9,8 +9,7 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
     echo "username: " . $row["username"]. 
-         " - level: " . $row["level"]. 
-         "<br>";
+         " - level: " . $row["level"];
   }
 } else {
   echo "0 results";
