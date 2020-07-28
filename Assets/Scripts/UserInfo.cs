@@ -17,12 +17,18 @@ public class UserInfo : MonoBehaviour
     {
         UserName = UserNameText.text = username;
         UserPassword = userpassword;
-        UserLevelText.text = "Level " + userlevel;
-        UserCoinsText.text = usercoins + " Gold";
+        Level = UserLevelText.text = "Level " + userlevel;
+        Coins = UserCoinsText.text = usercoins + " Gold";
     }
 
     public void SetID(string id)
     {
         UserID = id;
+    }
+
+    public void UpdateCoins(string coins)
+    {
+        Coins = coins;
+        UserCoinsText.text = Coins + " Gold";
     }
 }

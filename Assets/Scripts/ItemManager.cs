@@ -116,7 +116,12 @@ public class ItemManager : MonoBehaviour
             // id, itemID를 이미 구해놔서 파라미터 적용이 쉽다 이말이야.
             ItemOB.transform.Find("SellButton").GetComponent<Button>().onClick.AddListener(() =>
             {
-                StartCoroutine(Main.Instance.Web.SellItem(id, itemId, Main.Instance.UserInfo.UserID));
+                Action<string> _getUpdateCoins = (coins) =>
+                {
+                    Main.Instance.UserInfo.UpdateCoins(coins);
+                    Destroy(ItemOB.gameObject);
+                };
+                StartCoroutine(Main.Instance.Web.SellItem(id, itemId, Main.Instance.UserInfo.UserID, _getUpdateCoins));
             });
 
             // continue to the next item.
