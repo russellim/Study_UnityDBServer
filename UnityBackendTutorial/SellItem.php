@@ -22,11 +22,6 @@ if ($result->num_rows > 0) {
     {
         $sql3 = "UPDATE users SET coins = coins + '" . $itemPrice . "' WHERE id = '" . $userID . "'"; 
         $conn->query($sql3);
-
-        $sql4 = "SELECT coins FROM users WHERE id = '" . $userID . "'";
-        $result4 = $conn->query($sql4);
-        $info=mysqli_fetch_array($result4);
-        echo $info['coins'];
     }
     else
     {
