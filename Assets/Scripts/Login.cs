@@ -10,6 +10,7 @@ public class Login : MonoBehaviour
     public InputField UsernameInput;
     public InputField PasswordInput;
     public Button LoginButton;
+    
 
     public void OnClickLoginButton()
     {
@@ -27,6 +28,15 @@ public class Login : MonoBehaviour
 
         };
         StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text, _getPlayerInfoCallback));
+    }
+
+    public void OnClickExitButton()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     private void Update()

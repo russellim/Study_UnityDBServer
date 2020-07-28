@@ -7,7 +7,7 @@ public class Web : MonoBehaviour
 {
     // 테스트서버: http://localhost/UnityBackendTutorial/
     // 무료호스팅서버(라이브x): http://neneg.dothome.co.kr/UnityBackendTutorial/
-    string _path = "http://localhost/UnityBackendTutorial/";
+    string _path = "http://neneg.dothome.co.kr/UnityBackendTutorial/";
 
     //void Start()
     //{
