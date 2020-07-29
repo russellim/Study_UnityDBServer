@@ -78,6 +78,7 @@ public class ItemManager : MonoBehaviour
             ItemOB.transform.Find("Name").GetComponent<Text>().text = ItemInfoJson["name"];
             ItemOB.transform.Find("Price").GetComponent<Text>().text = ItemInfoJson["price"] + " G";
             ItemOB.transform.Find("Description").GetComponent<Text>().text = ItemInfoJson["description"];
+            ItemOB.GetComponent<RectTransform>().localScale = Vector3.one;
 
             // 1. Get bytes instead of sprite.
             // 2. Try to get image.

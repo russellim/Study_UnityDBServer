@@ -21,6 +21,8 @@ public class Main : MonoBehaviour
         Instance = this;
         if (!Web) Web = GetComponent<Web>();
         if (!UserInfo) UserInfo = GetComponent<UserInfo>();
+
+        TestDelegate.p2 += DisplayErrorMessage;
     }
 
     public void DisplayErrorMessage(string ErrorText)
