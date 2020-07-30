@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="firebase_database_url" translatable="false">https://fir-and-unity-tutorial-fa8d9.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">1046959227010</string>
+  <string name="google_storage_bucket" translatable="false">fir-and-unity-tutorial-fa8d9.appspot.com</string>
+  <string name="project_id" translatable="false">fir-and-unity-tutorial-fa8d9</string>
+  <string name="google_api_key" translatable="false">AIzaSyB2b9u5vpY28hZm8ulQ9PDJgQxV-hT741k</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB2b9u5vpY28hZm8ulQ9PDJgQxV-hT741k</string>
+  <string name="google_app_id" translatable="false">1:1046959227010:android:fdfcae9bffa19fe546349b</string>
+  <string name="default_web_client_id" translatable="false">1046959227010-oq5t0jjptum535e8r72or45mor5mk2m9.apps.googleusercontent.com</string>
+</resources>

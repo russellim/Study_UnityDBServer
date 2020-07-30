@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1046959227010",
+    "firebase_url": "https://fir-and-unity-tutorial-fa8d9.firebaseio.com",
+    "project_id": "fir-and-unity-tutorial-fa8d9",
+    "storage_bucket": "fir-and-unity-tutorial-fa8d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046959227010:android:fdfcae9bffa19fe546349b",
+        "android_client_info": {
+          "package_name": "com.neneg.unitydbserver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046959227010-oq5t0jjptum535e8r72or45mor5mk2m9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2b9u5vpY28hZm8ulQ9PDJgQxV-hT741k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046959227010-oq5t0jjptum535e8r72or45mor5mk2m9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
