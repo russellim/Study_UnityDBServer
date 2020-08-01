@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class LoadingManager : MonoBehaviour
 {
     [SerializeField]
-    Image LoadingBarProgress;
+    Image LoadingBarProgress = null;
     [SerializeField]
-    Text LoadingInfoText;
+    Text LoadingInfoText = null;
 
     private void Start()
     {
