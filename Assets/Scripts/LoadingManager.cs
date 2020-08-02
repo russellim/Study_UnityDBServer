@@ -11,10 +11,12 @@ public class LoadingManager : MonoBehaviour
     [SerializeField]
     Text LoadingInfoText = null;
 
+    public string NextSceneName;
+
     private void Start()
     {
         LoadingBarProgress.fillAmount = 0;
-        StartCoroutine(LoadAsyncScene("DBTutorial"));
+        StartCoroutine(LoadAsyncScene(NextSceneName));
     }
 
     public static void LoadScene(string SceneName)

@@ -4,4 +4,18 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    Camera MainCamera;
+
+    private void Start()
+    {
+        MainCamera = Camera.main;
+    }
+
+    private void OnMouseDrag()
+    {
+        Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        transform.position = new Vector3(MainCamera.ScreenToWorldPoint(mousePosition).x,
+                                         MainCamera.ScreenToWorldPoint(mousePosition).y,
+                                         0f);
+    }
 }
