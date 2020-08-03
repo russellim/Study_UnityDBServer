@@ -13,10 +13,20 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator SpawnEnemy()
     {
+        int num;
         while(!PlayerManager.Instance.IsDie)
         {
-            CreateEnemy("Enemy_Type1", -3.23f, 1f);
-            CreateEnemy("Enemy_Type1", -1f, 3.23f);
+            num = Random.Range(1, 2 + 1);
+            switch (num)
+            {
+                case 1:
+                    CreateEnemy("Enemy_Type1", -3.23f, 1f);
+                    CreateEnemy("Enemy_Type1", -1f, 3.23f);
+                    break;
+                case 2:
+                    CreateEnemy("Enemy_Type2s", -1f, 1f);
+                    break;
+            }
             yield return new WaitForSeconds(Random.Range(3f, 4f));
         }
     }

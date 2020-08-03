@@ -14,7 +14,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.down * Speed * Time.deltaTime);
+        transform.Translate(Vector2.down * Speed * Time.deltaTime);
     }
 
     IEnumerator Disable()

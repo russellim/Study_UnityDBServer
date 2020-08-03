@@ -16,13 +16,13 @@ public class Enemy : MonoBehaviour
     public float DestroyTime = 5f;
 
     public string BulletName;
-    public Transform BulletSocket;
+    public Transform Socket;
     public float RunningFire = 1.5f;
 
 
-    bool IsDie = false;
+    public bool IsDie = false;
 
-    private void OnEnable()
+    virtual public void OnEnable()
     {
         CurrentHP = SetHP;
         IsDie = false;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(Disable());
     }
 
-    IEnumerator Move()
+    virtual public IEnumerator Move()
     {
         while(!IsDie)
         {
@@ -40,14 +40,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator Attack()
+    virtual public IEnumerator Attack()
     {
         yield return new WaitForSeconds(0.3f);
         while (!IsDie)
         {
             GameObject BulletOB;
             BulletOB = ObjectPool.Instance.PopFromPool(BulletName);
-            BulletOB.transform.position = BulletSocket.position;
+            BulletOB.transform.SetPositionAndRotation(Socket.position, Socket.rotation);
             BulletOB.SetActive(true);
             yield return new WaitForSeconds(RunningFire);
         }
