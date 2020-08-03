@@ -7,7 +7,7 @@ public class EnemyBullet : MonoBehaviour
     public float Speed;
     public float DestroyTime = 2f;
 
-    private void OnEnable()
+    virtual public void OnEnable()
     {
         StartCoroutine(Disable());
     }
