@@ -32,7 +32,7 @@ public class Enemy_Type2s : MonoBehaviour
             else if(transform.position.x <= -1f) Direction = 1;
             transform.Translate(Direction * Vector2.right * Speed * Time.deltaTime);
 
-            if(transform.position.y <= -7f)
+            if(transform.position.y <= GameManager.Instance.OutPositionY)
             {
                 ObjectPool.Instance.PushToPool(gameObject.name, gameObject);
             }

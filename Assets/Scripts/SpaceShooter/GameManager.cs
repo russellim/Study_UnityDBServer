@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    int score = 0;
+    //int score = 0;
+
+    public float OutPositionY = -7f;
 
     private void Start()
     {

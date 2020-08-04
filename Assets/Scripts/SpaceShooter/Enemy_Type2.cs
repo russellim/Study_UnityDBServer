@@ -9,14 +9,6 @@ public class Enemy_Type2 : Enemy
     public bool ImAttack = false;
     public Transform[] Sockets;
 
-    public override void OnEnable()
-    {
-        CurrentHP = SetHP;
-        IsDie = false;
-        StartCoroutine(Move());
-        StartCoroutine(Attack());
-    }
-
     public override IEnumerator Move()
     {
         yield return null;
@@ -44,11 +36,10 @@ public class Enemy_Type2 : Enemy
         BulletOB.SetActive(true);
     }
 
-    private void OnDisable()
+    public override void Disable()
     {
-        if(IsDie)
-        {
-            Mother.LiveType2s.Remove(this);
-        }
+        Mother.LiveType2s.Remove(this);
     }
+
+
 }

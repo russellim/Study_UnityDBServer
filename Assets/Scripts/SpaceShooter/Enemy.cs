@@ -13,22 +13,23 @@ public class Enemy : MonoBehaviour
     public int SetHP = 1;
 
     public float Speed;
-    public float DestroyTime = 5f;
 
     public string BulletName;
     public Transform Socket;
     public float RunningFire = 1.5f;
 
-
+    public SpriteRenderer spriteRenderer;
+    public Collider2D col;
+    public string ExplosionParticleName = "explosion_enemy";
     public bool IsDie = false;
 
     virtual public void OnEnable()
     {
-        CurrentHP = SetHP;
         IsDie = false;
+        spriteRenderer.enabled = true;
+        col.enabled = true;
+        CurrentHP = SetHP;
         StartCoroutine(Move());
-        StartCoroutine(Attack());
-        StartCoroutine(Disable());
     }
 
     virtual public IEnumerator Move()
@@ -36,6 +37,11 @@ public class Enemy : MonoBehaviour
         while(!IsDie)
         {
             transform.Translate(Vector3.down * Speed * Time.deltaTime);
+
+            if(transform.position.y <= GameManager.Instance.OutPositionY)
+            {
+                Disable();
+            }
             yield return null;
         }
     }
@@ -53,9 +59,39 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator Disable()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        yield return new WaitForSeconds(DestroyTime);
+        if (collision.tag.Equals("PlayerBullet"))
+        {
+            CurrentHP--;
+            collision.gameObject.SetActive(false);
+
+            if (CurrentHP <= 0)
+            {
+                // Die.
+                StartCoroutine(Die());
+            }
+        }
+    }
+
+    IEnumerator Die()
+    {
+        IsDie = true;
+        spriteRenderer.enabled = false;
+        col.enabled = false;
+
+        ParticleSystem ExplosionParticle;
+        ExplosionParticle = ObjectPool.Instance.PopFromPool(ExplosionParticleName).GetComponent<ParticleSystem>();
+        ExplosionParticle.gameObject.transform.position = transform.position;
+        ExplosionParticle.gameObject.SetActive(true);
+        ExplosionParticle.Play();
+
+        yield return new WaitForSeconds(1f);
+        Disable();
+    }
+
+    virtual public void Disable()
+    {
         ObjectPool.Instance.PushToPool(gameObject.name, gameObject);
     }
 }

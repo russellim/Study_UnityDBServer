@@ -5,21 +5,19 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float Speed;
-    public float DestroyTime = 2f;
-
-    virtual public void OnEnable()
-    {
-        StartCoroutine(Disable());
-    }
 
     private void Update()
     {
         transform.Translate(Vector2.down * Speed * Time.deltaTime);
+
+        if (transform.position.y <= GameManager.Instance.OutPositionY)
+        {
+            Disable();
+        }
     }
 
-    IEnumerator Disable()
+    void Disable()
     {
-        yield return new WaitForSeconds(DestroyTime);
         ObjectPool.Instance.PushToPool(gameObject.name, gameObject);
     }
 }

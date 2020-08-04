@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Enemy_Type3 : Enemy
 {
+    [Header("Type3")]
     public Vector2[] WayPoints;
 
     public override void OnEnable()
     {
-        CurrentHP = SetHP;
-        IsDie = false;
-
         if((transform.position.x > 0 && WayPoints[0].x < 0) ||
             (transform.position.x < 0 && WayPoints[0].x > 0))
         {
@@ -19,8 +17,7 @@ public class Enemy_Type3 : Enemy
                 WayPoints[i].x *= -1;
             }
         }
-
-        StartCoroutine(Move());
+        base.OnEnable();
     }
 
     override public IEnumerator Move()
@@ -33,10 +30,10 @@ public class Enemy_Type3 : Enemy
                 yield return null;
             }
             Attack();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
         }
 
-        ObjectPool.Instance.PushToPool(gameObject.name, gameObject);
+        Disable();
     }
 
     new void Attack()
