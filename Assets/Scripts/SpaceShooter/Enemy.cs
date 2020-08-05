@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     // HP (데미지, 죽음).
     // 공격
     // 상태.
+    public int Score = 10;
 
     public int CurrentHP;
     public int SetHP = 1;
@@ -85,6 +86,8 @@ public class Enemy : MonoBehaviour
         ExplosionParticle.gameObject.transform.position = transform.position;
         ExplosionParticle.gameObject.SetActive(true);
         ExplosionParticle.Play();
+
+        GameManager.Instance.PlusScore(Score);
 
         yield return new WaitForSeconds(1f);
         Disable();

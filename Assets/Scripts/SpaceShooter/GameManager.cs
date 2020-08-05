@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    //int score = 0;
+    public int Score = 0;
+    int HighScore = 0;
 
     public float OutPositionY = -7f;
     public Vector2 PlayerStartPosition = new Vector2(0f, -3.74f);
@@ -57,5 +58,17 @@ public class GameManager : Singleton<GameManager>
         EnemyOB = ObjectPool.Instance.PopFromPool(name);
         EnemyOB.transform.position = new Vector2(pos.x, pos.y);
         EnemyOB.SetActive(true);
+    }
+
+    public void PlusScore(int AddScore)
+    {
+        Score += AddScore;
+        UIManager.Instance.UpdatePlayerScoreUI(Score);
+        if(HighScore < Score)
+        {
+            HighScore = Score;
+            UIManager.Instance.UpdateHighScoreUI(HighScore);
+        }
+
     }
 }
