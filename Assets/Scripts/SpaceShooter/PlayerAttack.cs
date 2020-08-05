@@ -16,20 +16,23 @@ public class PlayerAttack : MonoBehaviour
     {
         while(!PlayerManager.Instance.IsDie)
         {
-            switch(PlayerManager.Instance.PowerUp)
+            if (!PlayerManager.Instance.IsExplosion)
             {
-                case 1:
-                    CreateBullet(0);
-                    break;
-                case 2:
-                    CreateBullet(1);
-                    CreateBullet(2);
-                    break;
-                case 3:
-                    CreateBullet(0);
-                    CreateBullet(3);
-                    CreateBullet(4);
-                    break;
+                switch(PlayerManager.Instance.PowerUp)
+                {
+                    case 1:
+                        CreateBullet(0);
+                        break;
+                    case 2:
+                        CreateBullet(1);
+                        CreateBullet(2);
+                        break;
+                    case 3:
+                        CreateBullet(0);
+                        CreateBullet(3);
+                        CreateBullet(4);
+                        break;
+                }
             }
 
             yield return new WaitForSeconds(1f * PlayerManager.Instance.MultiRunningFire);

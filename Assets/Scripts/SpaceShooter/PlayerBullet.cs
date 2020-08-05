@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
     {
         transform.Translate(Vector3.up * Speed * PlayerManager.Instance.MultiBulletSpeed * Time.deltaTime);
 
-        if (transform.position.y <= GameManager.Instance.OutPositionY)
+        if (transform.position.y >= -GameManager.Instance.OutPositionY)
         {
             Disable();
         }

@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     //int score = 0;
 
     public float OutPositionY = -7f;
+    public Vector2 PlayerStartPosition = new Vector2(0f, -3.74f);
 
     private void Start()
     {

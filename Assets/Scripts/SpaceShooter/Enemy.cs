@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("PlayerBullet"))
+        if (collision.CompareTag("PlayerBullet"))
         {
             CurrentHP--;
             collision.gameObject.SetActive(false);

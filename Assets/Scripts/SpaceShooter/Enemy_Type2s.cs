@@ -45,7 +45,7 @@ public class Enemy_Type2s : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         while (LiveType2s.Count != 0)
         {
-            LiveType2s[Random.Range(0, LiveType2s.Count)].ImAttack = true;
+            LiveType2s[Random.Range(0, LiveType2s.Count)].Attack();
             yield return new WaitForSeconds(RunningFire);
         }
     }

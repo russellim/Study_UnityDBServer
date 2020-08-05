@@ -14,18 +14,10 @@ public class Enemy_Type2 : Enemy
         yield return null;
     }
 
-    public override IEnumerator Attack()
+    new public void Attack()
     {
-        while (!IsDie)
-        {
-            if(ImAttack)
-            {
-                CreateBullet(0);
-                CreateBullet(1);
-                ImAttack = false;
-            }
-            yield return null;
-        }
+        CreateBullet(0);
+        CreateBullet(1);
     }
 
     void CreateBullet(int SocketNumber)

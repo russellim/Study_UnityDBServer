@@ -29,7 +29,7 @@ public class Enemy_Type3 : Enemy
                 transform.position = Vector2.MoveTowards(transform.position, WayPoints[i], Speed * Time.deltaTime);
                 yield return null;
             }
-            Attack();
+            if(!IsDie) Attack();
             yield return new WaitForSeconds(0.5f);
         }
 
