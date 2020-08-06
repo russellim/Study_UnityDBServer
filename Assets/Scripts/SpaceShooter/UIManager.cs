@@ -8,6 +8,9 @@ public class UIManager : Singleton<UIManager>
     public Text PlayerScore;
     public Text HighScore;
 
+    public Image ExpProgress;
+    public Text LevelText;
+
     public GameObject GameOverUI;
 
     public void UpdatePlayerScoreUI(int Score)

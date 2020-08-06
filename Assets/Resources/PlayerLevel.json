@@ -1,0 +1,13 @@
+{ "PlayerLevel":[
+{"Level":1,"Exp":5,"EnemySpeed":0},
+{"Level":2,"Exp":8,"EnemySpeed":0.1},
+{"Level":3,"Exp":12,"EnemySpeed":0.2},
+{"Level":4,"Exp":17,"EnemySpeed":0.3},
+{"Level":5,"Exp":23,"EnemySpeed":0.4},
+{"Level":6,"Exp":30,"EnemySpeed":0.5},
+{"Level":7,"Exp":38,"EnemySpeed":0.6},
+{"Level":8,"Exp":47,"EnemySpeed":0.7},
+{"Level":9,"Exp":57,"EnemySpeed":0.8},
+{"Level":10,"Exp":68,"EnemySpeed":0.9},
+{"Level":11,"Exp":9999,"EnemySpeed":1}
+]}

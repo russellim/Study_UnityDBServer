@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : Singleton<Player>
 {
+    public int Level = 1;
+    public int Exp = 0;
+
     public int FullHP = 5;
     public int CurrentHP = 3;
     public int PowerUp = 1;
     public float MultiBulletSpeed = 1f;
     public float MultiRunningFire = 1f;
-
 
     public SpriteRenderer spriteRenderer;
     public Collider2D col;
