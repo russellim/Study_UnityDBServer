@@ -14,11 +14,11 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
-        while(!PlayerManager.Instance.IsDie)
+        while(!Player.Instance.IsDie)
         {
-            if (!PlayerManager.Instance.IsExplosion)
+            if (!Player.Instance.IsExplosion)
             {
-                switch(PlayerManager.Instance.PowerUp)
+                switch(Player.Instance.PowerUp)
                 {
                     case 1:
                         CreateBullet(0);
@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(1f * PlayerManager.Instance.MultiRunningFire);
+            yield return new WaitForSeconds(1f * Player.Instance.MultiRunningFire);
         }
     }
 

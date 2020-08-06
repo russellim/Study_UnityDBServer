@@ -9,7 +9,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.up * Speed * PlayerManager.Instance.MultiBulletSpeed * Time.deltaTime);
+        transform.Translate(Vector3.up * Speed * Player.Instance.MultiBulletSpeed * Time.deltaTime);
 
         if (transform.position.y >= -GameManager.Instance.OutPositionY)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : Singleton<PlayerManager>
+public class Player : Singleton<Player>
 {
     public int FullHP = 5;
     public int CurrentHP = 3;
@@ -71,7 +71,10 @@ public class PlayerManager : Singleton<PlayerManager>
 
         ExplosionParticle.Play();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+
+        UIManager.Instance.DisplayGameOverUI();
+        GameManager.Instance.SaveHighScore();
     }
 
 }

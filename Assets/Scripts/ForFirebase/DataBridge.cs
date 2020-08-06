@@ -11,7 +11,7 @@ public class DataBridge : MonoBehaviour
 {
     public InputField UserNameInput, PasswordInput;
 
-    private Player data;
+    private TestPlayer data;
 
     private string DATA_URL = "https://fir-and-unity-tutorial-fa8d9.firebaseio.com/";
 
@@ -31,7 +31,7 @@ public class DataBridge : MonoBehaviour
             return;
         }
 
-        data = new Player(UserNameInput.text, PasswordInput.text);
+        data = new TestPlayer(UserNameInput.text, PasswordInput.text);
         string jsonData = JsonUtility.ToJson(data);
 
 
@@ -60,11 +60,11 @@ public class DataBridge : MonoBehaviour
                 string PlayerData = snapshot.GetRawJsonValue();
                 //print("Data is " + PlayerData);
 
-                Player m = JsonUtility.FromJson<Player>(PlayerData);
+                TestPlayer m = JsonUtility.FromJson<TestPlayer>(PlayerData);
                 foreach(var child in snapshot.Children)
                 {
                     string t = child.GetRawJsonValue();
-                    Player extractedData = JsonUtility.FromJson<Player>(t);
+                    TestPlayer extractedData = JsonUtility.FromJson<TestPlayer>(t);
                     print("The Player's username is " + extractedData.Username);
                     print("The Player's password is " + extractedData.Password);
                 }

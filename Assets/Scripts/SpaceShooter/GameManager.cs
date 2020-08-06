@@ -12,13 +12,16 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        HighScore = LoadHighScore();
+        UIManager.Instance.UpdateHighScoreUI(HighScore);
+
         StartCoroutine(SpawnEnemy());
     }
 
     IEnumerator SpawnEnemy()
     {
         int num;
-        while(!PlayerManager.Instance.IsDie)
+        while(!Player.Instance.IsDie)
         {
             num = Random.Range(1, 3 + 1);
             switch (num)
@@ -69,6 +72,18 @@ public class GameManager : Singleton<GameManager>
             HighScore = Score;
             UIManager.Instance.UpdateHighScoreUI(HighScore);
         }
-
     }
+
+    public void SaveHighScore()
+    {
+        if (HighScore == Score)
+        {
+            PlayerPrefs.SetInt("HighScore", HighScore);
+        }
+    }
+    int LoadHighScore()
+    {
+        return PlayerPrefs.GetInt("HighScore", 0);
+    }
+
 }

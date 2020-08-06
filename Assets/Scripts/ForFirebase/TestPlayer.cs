@@ -4,14 +4,14 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Player
+public class TestPlayer
 {
     public string Username;
     public string Password;
 
-    public Player() {  }
+    public TestPlayer() {  }
 
-    public Player(string name,  string pass)
+    public TestPlayer(string name,  string pass)
     {
         Username = name;
         Password = pass;

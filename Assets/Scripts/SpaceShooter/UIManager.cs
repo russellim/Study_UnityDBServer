@@ -8,6 +8,8 @@ public class UIManager : Singleton<UIManager>
     public Text PlayerScore;
     public Text HighScore;
 
+    public GameObject GameOverUI;
+
     public void UpdatePlayerScoreUI(int Score)
     {
         PlayerScore.text = Score.ToString("000000");
@@ -15,6 +17,15 @@ public class UIManager : Singleton<UIManager>
     public void UpdateHighScoreUI(int Score)
     {
         HighScore.text = Score.ToString("000000");
+    }
+
+    public void DisplayGameOverUI()
+    {
+        GameOverUI.SetActive(true);
+    }
+    public void OnClickReplayButton()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Loading");
     }
 
 }
