@@ -5,6 +5,17 @@ using UnityEngine;
 public class BackgroundMove : MonoBehaviour
 {
     public float Speed;
+    public SpriteRenderer[] renderers;
+    public Sprite[] sprites;
+
+    private void Start()
+    {
+        int num = Random.Range(0, sprites.Length);
+        for(int i=0; i< renderers.Length; ++i)
+        {
+            renderers[i].sprite = sprites[num];
+        }
+    }
 
     private void Update()
     {

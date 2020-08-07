@@ -73,6 +73,11 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(Die());
             }
         }
+        else if (collision.CompareTag("Player"))
+        {
+            Player.Instance.GetDamage();
+            StartCoroutine(Die());
+        }
     }
 
     IEnumerator Die()

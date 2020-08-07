@@ -14,9 +14,10 @@ public class Enemy_Type2s : MonoBehaviour
 
     private void OnEnable()
     {
-        LiveType2s = AllType2s;
+        LiveType2s.Clear();
         foreach(Enemy_Type2 e in AllType2s)
         {
+            LiveType2s.Add(e);
             e.gameObject.SetActive(true);
         }
         StartCoroutine(Move());

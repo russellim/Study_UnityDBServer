@@ -63,21 +63,26 @@ public class Player : Singleton<Player>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!IsRevivaling && !IsDie && (collision.CompareTag("EnemyBullet") || collision.CompareTag("Enemy")))
+        if (!IsRevivaling && !IsDie && (collision.CompareTag("EnemyBullet")))
         {
-            CurrentHP--;
             collision.gameObject.SetActive(false);
-            IsExplosion = true;
+            GetDamage();
+        }
+    }
 
-            if (CurrentHP <= 0)
-            {
-                // Die.
-                StartCoroutine(Die());
-            }
-            else
-            {
-                StartCoroutine(Revival());
-            }
+    public void GetDamage()
+    {
+        CurrentHP--;
+        IsExplosion = true;
+
+        if (CurrentHP <= 0)
+        {
+            // Die.
+            StartCoroutine(Die());
+        }
+        else
+        {
+            StartCoroutine(Revival());
         }
     }
 
@@ -113,6 +118,8 @@ public class Player : Singleton<Player>
         col.enabled = false;
 
         ExplosionParticle.Play();
+
+        UIManager.Instance.PauseButton.SetActive(false);
 
         yield return new WaitForSeconds(2f);
 

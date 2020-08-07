@@ -11,7 +11,10 @@ public class UIManager : Singleton<UIManager>
     public Text LevelText;
     public Image ExpProgress;
 
+    public GameObject PauseButton;
+
     public GameObject GameOverUI;
+    public GameObject PauseUI;
 
     public void UpdatePlayerScoreUI(int Score)
     {
@@ -44,9 +47,20 @@ public class UIManager : Singleton<UIManager>
     {
         GameOverUI.SetActive(true);
     }
-    public void OnClickReplayButton()
+    public void OnClickPauseButton()
     {
+        Time.timeScale = 0f;
+        PauseUI.SetActive(true);
+    }
+    public void OnClickRetryButton()
+    {
+        Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Loading");
+    }
+    public void OnClickResumeButton()
+    {
+        Time.timeScale = 1f;
+        PauseUI.SetActive(false);
     }
 
 }

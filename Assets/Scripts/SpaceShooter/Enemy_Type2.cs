@@ -32,6 +32,4 @@ public class Enemy_Type2 : Enemy
     {
         Mother.LiveType2s.Remove(this);
     }
-
-
 }
