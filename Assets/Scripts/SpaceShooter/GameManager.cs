@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
         while(!Player.Instance.IsDie)
         {
             num = Random.Range(1, 3 + 1);
-            switch (2)
+            switch (num)
             {
                 case 1:
                     CreateEnemy("Enemy_Type1", -3.23f, 1f);
@@ -33,7 +33,7 @@ public class GameManager : Singleton<GameManager>
                     break;
                 case 2:
                     CreateEnemy("Enemy_Type2s", -1f, 1f);
-                    yield return new WaitForSeconds(Random.Range(5f, 6f));
+                    yield return new WaitForSeconds(Random.Range(3f, 4f));
                     break;
                 case 3:
                     num = Random.Range(0, 2) == 0 ? 1 : -1;

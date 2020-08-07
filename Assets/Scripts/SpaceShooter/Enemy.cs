@@ -19,10 +19,16 @@ public class Enemy : MonoBehaviour
     public Transform Socket;
     public float RunningFire = 1.5f;
 
-    public SpriteRenderer spriteRenderer;
-    public Collider2D col;
-    public string ExplosionParticleName = "explosion_enemy";
-    public bool IsDie = false;
+    SpriteRenderer spriteRenderer;
+    Collider2D col;
+    const string ExplosionParticleName = "explosion_enemy";
+    protected bool IsDie = false;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
+    }
 
     virtual public void OnEnable()
     {
@@ -73,7 +79,7 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(Die());
             }
         }
-        else if (collision.CompareTag("Player"))
+        else if (!Player.Instance.IsRevivaling && collision.CompareTag("Player"))
         {
             Player.Instance.GetDamage();
             StartCoroutine(Die());
