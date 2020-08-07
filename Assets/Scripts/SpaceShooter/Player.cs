@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : Singleton<Player>
 {
-    public int Level = 1;
-    public int Exp = 0;
+    private PlayerLevel CurrentNeedExp;
+    private int Level = 1;
+    private int Exp = 0;
 
     public int FullHP = 5;
     public int CurrentHP = 3;
@@ -19,6 +20,46 @@ public class Player : Singleton<Player>
     public bool IsDie = false;
     public bool IsRevivaling = false;
     public bool IsExplosion = false;
+
+    private void Start()
+    {
+        SetCurrentNeedExp(1);
+    }
+
+    public void SetCurrentNeedExp(int Level)
+    {
+        CurrentNeedExp = JSONManager.Instance.PlayerLevels[Level - 1];
+    }
+    void LevelUp()
+    {
+        Level++;
+        UIManager.Instance.UpdateLevelText(Level);
+        MultiBulletSpeed += 0.05f;
+        MultiRunningFire -= 0.05f;
+        if (Level == 11)
+        {
+            UIManager.Instance.UpdateExpProgress(1, 1);
+            return;
+        }
+        SetCurrentNeedExp(Level);
+        Exp = 0;
+        UIManager.Instance.UpdateExpProgress(Exp, CurrentNeedExp.Exp);
+    }
+    public void ExpUp()
+    {
+        if (Level == 11) return;
+            
+        Exp++;
+        if (Exp < CurrentNeedExp.Exp)
+        {
+            UIManager.Instance.UpdateExpProgress(Exp, CurrentNeedExp.Exp);
+        }
+        else
+        {
+            LevelUp();
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

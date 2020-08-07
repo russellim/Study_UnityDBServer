@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
 
-public class JSONManager : MonoBehaviour
+public class JSONManager : Singleton<JSONManager>
 {
     public List<PlayerLevel> PlayerLevels = new List<PlayerLevel>();
 
-    private void Start()
+    private void Awake()
     {
         ParsePlayerLevelJson("PlayerLevel");
     }

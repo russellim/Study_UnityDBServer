@@ -88,6 +88,7 @@ public class Enemy : MonoBehaviour
         ExplosionParticle.Play();
 
         GameManager.Instance.PlusScore(Score);
+        Player.Instance.ExpUp();
 
         yield return new WaitForSeconds(1f);
         Disable();

@@ -8,8 +8,8 @@ public class UIManager : Singleton<UIManager>
     public Text PlayerScore;
     public Text HighScore;
 
-    public Image ExpProgress;
     public Text LevelText;
+    public Image ExpProgress;
 
     public GameObject GameOverUI;
 
@@ -21,6 +21,24 @@ public class UIManager : Singleton<UIManager>
     {
         HighScore.text = Score.ToString("000000");
     }
+
+
+    public void UpdateLevelText(int Level)
+    {
+        if(Level >= 11)
+        {
+            LevelText.text = "MAX";
+        }
+        else
+        {
+            LevelText.text = Level.ToString();
+        }
+    }
+    public void UpdateExpProgress(int Exp, int NeedExp)
+    {
+        ExpProgress.fillAmount = (float)Exp / (float)NeedExp;
+    }
+
 
     public void DisplayGameOverUI()
     {
