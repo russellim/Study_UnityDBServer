@@ -10,7 +10,7 @@ Score
 
 @plan
 Main scene
-Score db(server)
+Score db(firebase? or hosting server?)
 Debuff bullet in enemy
 Ui effect (additional)
-Option
+Option(sound)
