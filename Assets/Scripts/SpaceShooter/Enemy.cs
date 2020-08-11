@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
     public Transform Socket;
     public float RunningFire = 1.5f;
 
+    protected float MultiSpeed;
+    protected float MultiRunningFire;
+
+
     SpriteRenderer spriteRenderer;
     Collider2D col;
     const string ExplosionParticleName = "explosion_enemy";
@@ -36,6 +40,10 @@ public class Enemy : MonoBehaviour
         spriteRenderer.enabled = true;
         col.enabled = true;
         CurrentHP = SetHP;
+
+        MultiSpeed = GameManager.Instance.MultiEnemySpeed;
+        MultiRunningFire = GameManager.Instance.MultiEnemyRunningFire;
+
         StartCoroutine(Move());
     }
 
@@ -43,7 +51,7 @@ public class Enemy : MonoBehaviour
     {
         while(!IsDie)
         {
-            transform.Translate(Vector3.down * Speed * Time.deltaTime);
+            transform.Translate(Vector3.down * Speed * MultiSpeed * Time.deltaTime);
 
             if(transform.position.y <= GameManager.Instance.OutPositionY)
             {
@@ -62,7 +70,7 @@ public class Enemy : MonoBehaviour
             BulletOB = ObjectPool.Instance.PopFromPool(BulletName);
             BulletOB.transform.SetPositionAndRotation(Socket.position, Socket.rotation);
             BulletOB.SetActive(true);
-            yield return new WaitForSeconds(RunningFire);
+            yield return new WaitForSeconds(RunningFire * MultiRunningFire);
         }
     }
 

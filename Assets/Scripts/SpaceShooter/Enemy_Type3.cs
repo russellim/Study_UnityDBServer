@@ -26,7 +26,7 @@ public class Enemy_Type3 : Enemy
         {
             while(transform.position.x != WayPoints[i].x)
             {
-                transform.position = Vector2.MoveTowards(transform.position, WayPoints[i], Speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, WayPoints[i], Speed * MultiSpeed * Time.deltaTime);
                 yield return null;
             }
             if(!IsDie) Attack();

@@ -36,6 +36,9 @@ public class Player : Singleton<Player>
         UIManager.Instance.UpdateLevelText(Level);
         MultiBulletSpeed += 0.05f;
         MultiRunningFire -= 0.05f;
+        GameManager.Instance.MultiEnemySpeed += 0.05f;
+        GameManager.Instance.MultiEnemyRunningFire -= 0.05f;
+        GameManager.Instance.MultiEnemySpawnTime -= 0.05f;
         if (Level == 11)
         {
             UIManager.Instance.UpdateExpProgress(1, 1);
