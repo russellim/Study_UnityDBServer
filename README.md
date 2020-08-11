@@ -1,15 +1,15 @@
 # Study_UnityDBServer :smile:
 
-2019.4.7f not install
+2019.4.7f
 
 @now
 3 Type Enemy
 Player has level, exp and hp
 Player Attack Running fire and bullet speed up
 Score
+Main scene
 
 @plan
-Main scene
 Score db(firebase? or hosting server?)
 Debuff bullet in enemy
 Ui effect (additional)
