@@ -14,6 +14,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject PauseButton;
 
     public GameObject GameOverUI;
+    public GameObject RankingWin;
+    public GameObject GameOverWin;
     public GameObject PauseUI;
     public GameObject LoadingUI;
 
@@ -47,6 +49,18 @@ public class UIManager : Singleton<UIManager>
     public void DisplayGameOverUI()
     {
         GameOverUI.SetActive(true);
+    }
+
+
+    public void OnClickRankingCancelButton()
+    {
+        RankingWin.SetActive(false);
+        GameOverWin.SetActive(true);
+    }
+    public void OnClickGameOverBackButton()
+    {
+        GameOverWin.SetActive(false);
+        RankingWin.SetActive(true);
     }
     public void OnClickPauseButton()
     {

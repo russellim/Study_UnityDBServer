@@ -7,6 +7,8 @@ public class GameManager : Singleton<GameManager>
     public int Score = 0;
     int HighScore = 0;
 
+    public float PlayTime = 0.0f;
+
     public float OutPositionY = -7f;
     public Vector2 PlayerStartPosition = new Vector2(0f, -3.74f);
     public float MultiEnemySpeed = 1f;
@@ -19,6 +21,7 @@ public class GameManager : Singleton<GameManager>
         UIManager.Instance.UpdateHighScoreUI(HighScore);
 
         StartCoroutine(SpawnEnemy());
+        StartCoroutine(CheckTime());
     }
 
     IEnumerator SpawnEnemy()
@@ -91,9 +94,18 @@ public class GameManager : Singleton<GameManager>
 
     private void OnApplicationPause(bool pause)
     {
-        if(pause)
+        if(!Player.Instance.IsDie && pause)
         {
             UIManager.Instance.OnClickPauseButton();
+        }
+    }
+
+    IEnumerator CheckTime()
+    {
+        while(!Player.Instance.IsDie)
+        {
+            PlayTime += Time.deltaTime;
+            yield return null;
         }
     }
 }

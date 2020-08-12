@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Singleton<Player>
 {
     private PlayerLevel CurrentNeedExp;
-    private int Level = 1;
+    public int Level = 1;
     private int Exp = 0;
 
     public int FullHP = 5;
