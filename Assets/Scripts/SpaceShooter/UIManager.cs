@@ -15,6 +15,7 @@ public class UIManager : Singleton<UIManager>
 
     public GameObject GameOverUI;
     public GameObject RankingWin;
+    public GameObject RankTableWin;
     public GameObject GameOverWin;
     public GameObject PauseUI;
     public GameObject LoadingUI;
