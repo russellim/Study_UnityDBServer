@@ -28,6 +28,12 @@ public class Enemy_Type2 : Enemy
         BulletOB.SetActive(true);
     }
 
+    public override IEnumerator Die()
+    {
+        Mother.LiveType2s.Remove(this);
+        return base.Die();
+    }
+
     public override void Disable()
     {
         Mother.LiveType2s.Remove(this);

@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator Die()
+    virtual public IEnumerator Die()
     {
         IsDie = true;
         spriteRenderer.enabled = false;
@@ -108,6 +108,8 @@ public class Enemy : MonoBehaviour
 
         GameManager.Instance.PlusScore(Score);
         Player.Instance.ExpUp();
+
+        GameManager.Instance.SpawnItem(gameObject);
 
         yield return new WaitForSeconds(1f);
         Disable();

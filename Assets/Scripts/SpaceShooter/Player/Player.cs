@@ -66,17 +66,47 @@ public class Player : Singleton<Player>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!IsRevivaling && !IsDie && (collision.CompareTag("EnemyBullet")))
+        if (!IsRevivaling && !IsDie && collision.CompareTag("EnemyBullet"))
         {
             collision.gameObject.SetActive(false);
             GetDamage();
         }
+
+        if (!IsDie && collision.CompareTag("Stat"))
+        {
+            ObjectPool.Instance.PushToPool("StatItem", collision.gameObject);
+            if(Random.Range(0, 2) == 0)
+            {
+                if (PowerUp == 1) GameManager.Instance.PlusScore(-10);
+                else PowerUp--;
+            }
+            else
+            {
+                if (PowerUp == 3) GameManager.Instance.PlusScore(30);
+                else PowerUp++;
+            }
+        }
+
+        if(!IsDie && collision.CompareTag("Heart"))
+        {
+            ObjectPool.Instance.PushToPool("HeartItem", collision.gameObject);
+            if(CurrentHP == 5)
+            {
+                GameManager.Instance.PlusScore(20);
+            }
+            else
+            {
+                GetHP();
+            }
+        }
+
     }
 
     public void GetDamage()
     {
         CurrentHP--;
         IsExplosion = true;
+        UIManager.Instance.UpdateHPUI(CurrentHP, false);
 
         if (CurrentHP <= 0)
         {
@@ -87,6 +117,12 @@ public class Player : Singleton<Player>
         {
             StartCoroutine(Revival());
         }
+    }
+
+    void GetHP()
+    {
+        CurrentHP++;
+        UIManager.Instance.UpdateHPUI(CurrentHP, true);
     }
 
     IEnumerator Revival()

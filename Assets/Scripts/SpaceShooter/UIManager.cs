@@ -11,6 +11,9 @@ public class UIManager : Singleton<UIManager>
     public Text LevelText;
     public Image ExpProgress;
 
+    [SerializeField]
+    GameObject[] HPUI;
+
     public GameObject PauseButton;
 
     public GameObject GameOverUI;
@@ -44,6 +47,18 @@ public class UIManager : Singleton<UIManager>
     public void UpdateExpProgress(int Exp, int NeedExp)
     {
         ExpProgress.fillAmount = (float)Exp / (float)NeedExp;
+    }
+
+    public void UpdateHPUI(int CurrentHP, bool IsHeal)
+    {
+        if(IsHeal)
+        {
+            HPUI[CurrentHP - 1].SetActive(true);
+        }
+        else
+        {
+            HPUI[CurrentHP].SetActive(false);
+        }
     }
 
 

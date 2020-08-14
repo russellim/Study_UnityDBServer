@@ -15,6 +15,9 @@ public class GameManager : Singleton<GameManager>
     public float MultiEnemyRunningFire = 1f;
     public float MultiEnemySpawnTime = 1f;
 
+    public float StatItemTime = 0f;
+    public float HeartItemTime = 0f;
+
     private void Start()
     {
         HighScore = LoadHighScore();
@@ -22,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 
         StartCoroutine(SpawnEnemy());
         StartCoroutine(CheckTime());
+        //StartCoroutine(HeartItemCoolTime());
     }
 
     IEnumerator SpawnEnemy()
@@ -97,6 +101,47 @@ public class GameManager : Singleton<GameManager>
         if(!Player.Instance.IsDie && pause)
         {
             UIManager.Instance.OnClickPauseButton();
+        }
+    }
+
+    public void SpawnItem(GameObject root)
+    {
+        if (StatItemTime <= 0f)
+        {
+            GameObject ItemOB;
+            ItemOB = ObjectPool.Instance.PopFromPool("StatItem");
+            ItemOB.transform.SetPositionAndRotation(root.transform.position, root.transform.rotation);
+            ItemOB.SetActive(true);
+            StartCoroutine(StatItemCoolTime());
+            return;
+        }
+
+        if (HeartItemTime <= 0f)
+        {
+            GameObject ItemOB;
+            ItemOB = ObjectPool.Instance.PopFromPool("HeartItem");
+            ItemOB.transform.SetPositionAndRotation(root.transform.position, root.transform.rotation);
+            ItemOB.SetActive(true);
+            StartCoroutine(HeartItemCoolTime());
+        }
+    }
+
+    public IEnumerator StatItemCoolTime()
+    {
+        StatItemTime = Random.Range(9, 14);
+        while (StatItemTime > 0f)
+        {
+            StatItemTime -= 1f;
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    public IEnumerator HeartItemCoolTime()
+    {
+        HeartItemTime = Random.Range(13, 18);
+        while(HeartItemTime > 0f)
+        {
+            HeartItemTime -= 1f;
+            yield return new WaitForSeconds(1f);
         }
     }
 
