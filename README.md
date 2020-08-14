@@ -2,15 +2,16 @@
 
 2019.4.7f
 
-@now
+#now
 3 Type Enemy
 Player has level, exp and hp
 Player Attack Running fire and bullet speed up
 Score
 Main scene
+Score db(firebase)
 
-@plan
-Score db(firebase? or hosting server?)
+#plan
 Debuff bullet in enemy
 Ui effect (additional)
 Option(sound)
+Detail(,...)
