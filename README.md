@@ -9,6 +9,7 @@ Player Attack Running fire and bullet speed up
 Score
 Main scene
 Score db(firebase)
+Item(Heart, PowerUp)
 
 #plan
 Debuff bullet in enemy
