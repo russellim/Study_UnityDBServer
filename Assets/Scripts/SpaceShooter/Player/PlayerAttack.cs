@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     string BulletName = "PlayerBullet";
     public Transform[] Sockets;
+    public AudioSource AttackSound;
 
     private void Start()
     {
@@ -34,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
                         break;
                 }
             }
-
+            AttackSound.Play();
             yield return new WaitForSeconds(1f * Player.Instance.MultiRunningFire);
         }
     }

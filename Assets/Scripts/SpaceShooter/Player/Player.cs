@@ -17,9 +17,13 @@ public class Player : Singleton<Player>
     public SpriteRenderer spriteRenderer;
     public Collider2D col;
     public ParticleSystem ExplosionParticle;
+    public AudioSource ExplosionSound;
     public bool IsDie = false;
     public bool IsRevivaling = false;
     public bool IsExplosion = false;
+
+    public AudioSource PowerUpSound;
+    public AudioSource HeartUpSound;
 
     private void Start()
     {
@@ -75,7 +79,8 @@ public class Player : Singleton<Player>
         if (!IsDie && collision.CompareTag("Stat"))
         {
             ObjectPool.Instance.PushToPool("StatItem", collision.gameObject);
-            if(Random.Range(0, 2) == 0)
+            PowerUpSound.Play();
+            if (Random.Range(0, 2) == 0)
             {
                 if (PowerUp == 1) GameManager.Instance.PlusScore(-10);
                 else PowerUp--;
@@ -90,7 +95,8 @@ public class Player : Singleton<Player>
         if(!IsDie && collision.CompareTag("Heart"))
         {
             ObjectPool.Instance.PushToPool("HeartItem", collision.gameObject);
-            if(CurrentHP == 5)
+            HeartUpSound.Play();
+            if (CurrentHP == 5)
             {
                 GameManager.Instance.PlusScore(20);
             }
@@ -131,6 +137,7 @@ public class Player : Singleton<Player>
         spriteRenderer.enabled = false;
         col.enabled = false;
         ExplosionParticle.Play();
+        ExplosionSound.Play();
 
         yield return new WaitForSeconds(2f);
         IsExplosion = false;

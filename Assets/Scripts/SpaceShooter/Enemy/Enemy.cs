@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour
         ExplosionParticle = ObjectPool.Instance.PopFromPool(ExplosionParticleName).GetComponent<ParticleSystem>();
         ExplosionParticle.gameObject.transform.position = transform.position;
         ExplosionParticle.gameObject.SetActive(true);
+        ExplosionParticle.gameObject.GetComponent<AudioSource>().Play();
         ExplosionParticle.Play();
 
         GameManager.Instance.PlusScore(Score);

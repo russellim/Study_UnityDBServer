@@ -12,7 +12,7 @@ public class UIManager : Singleton<UIManager>
     public Image ExpProgress;
 
     [SerializeField]
-    GameObject[] HPUI;
+    GameObject[] HPUI = null;
 
     public GameObject PauseButton;
 
@@ -20,8 +20,9 @@ public class UIManager : Singleton<UIManager>
     public GameObject RankingWin;
     public GameObject RankTableWin;
     public GameObject GameOverWin;
-    public GameObject PauseUI;
+    public GameObject PauseWin;
     public GameObject LoadingUI;
+    public GameObject SettingWin;
 
     public void UpdatePlayerScoreUI(int Score)
     {
@@ -70,36 +71,53 @@ public class UIManager : Singleton<UIManager>
 
     public void OnClickRankingCancelButton()
     {
+        SoundContoller.Instance.ButtonSound.Play();
         RankingWin.SetActive(false);
         GameOverWin.SetActive(true);
     }
     public void OnClickGameOverBackButton()
     {
+        SoundContoller.Instance.ButtonSound.Play();
         GameOverWin.SetActive(false);
         RankingWin.SetActive(true);
     }
     public void OnClickPauseButton()
     {
+        SoundContoller.Instance.PauseSound.Play();
         Time.timeScale = 0f;
-        PauseUI.SetActive(true);
+        PauseWin.SetActive(true);
     }
     public void OnClickRetryButton()
     {
+        SoundContoller.Instance.PlayStartSound.Play();
         Time.timeScale = 1f;
         Player.Instance.col.enabled = false;
         GameOverUI.SetActive(false);
-        PauseUI.SetActive(false);
+        PauseWin.SetActive(false);
         LoadingUI.SetActive(true);
     }
     public void OnClickResumeButton()
     {
+        SoundContoller.Instance.ButtonSound.Play();
         Time.timeScale = 1f;
-        PauseUI.SetActive(false);
+        PauseWin.SetActive(false);
+    }
+    public void OnClickSettingButton()
+    {
+        SoundContoller.Instance.ButtonSound.Play();
+        PauseWin.SetActive(false);
+        SettingWin.SetActive(true);
+    }
+    public void OnCloseSettingWin()
+    {
+        SoundContoller.Instance.ButtonSound.Play();
+        PauseWin.SetActive(true);
+        SettingWin.SetActive(false);
     }
     public void OnClickMainButton()
     {
+        SoundContoller.Instance.ButtonSound.Play();
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }
-
 }
