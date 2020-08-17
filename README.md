@@ -12,9 +12,10 @@ Score
 Main scene
 Score db(firebase)
 Item(Heart, PowerUp)
+Setting(sound)
 
 #plan
+Setting(handed)
 Debuff bullet in enemy
 Ui effect (additional)
-Option(sound)
 Detail(,...)
