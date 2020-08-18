@@ -18,6 +18,7 @@ public class SoundContoller : Singleton<SoundContoller>
     public Toggle SFXToggle;
     public Toggle UIToggle;
 
+
     private void Start()
     {
         BGMToggle.onValueChanged.AddListener(delegate { SetBGMVolume(BGMToggle.isOn); });
