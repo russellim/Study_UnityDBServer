@@ -36,6 +36,7 @@ public class DataBridge : MonoBehaviour
 
     public GameObject RankWin;
     public RankTable rankTable;
+    public GameObject LoadingImage;
 
     private PlayerScoreDB data;
     private string DATA_URL = "https://fir-and-unity-tutorial-fa8d9.firebaseio.com/";
@@ -164,6 +165,7 @@ public class DataBridge : MonoBehaviour
             rankTable.OnChangeTextValue(0, i + 1, 2, temp1[i].Score.ToString());
             rankTable.OnChangeTextValue(0, i + 1, 3, temp1[i].Time.ToString());
         }
+        LoadingImage.SetActive(false);
     }
     IEnumerator ShowTimeRankTable()
     {
@@ -177,6 +179,7 @@ public class DataBridge : MonoBehaviour
             rankTable.OnChangeTextValue(1, i + 1, 1, temp2[i].Level.ToString());
             rankTable.OnChangeTextValue(1, i + 1, 2, temp2[i].Time.ToString());
         }
+        LoadingImage.SetActive(false);
     }
 
     public void OnClickCloseRank()

@@ -28,7 +28,8 @@ public class GameManager : Singleton<GameManager>
 
         StartCoroutine(SpawnEnemy());
         StartCoroutine(CheckTime());
-        //StartCoroutine(HeartItemCoolTime());
+        StartCoroutine(HeartItemCoolTime());
+        StartCoroutine(StatItemCoolTime());
     }
 
     IEnumerator SpawnEnemy()
@@ -131,7 +132,7 @@ public class GameManager : Singleton<GameManager>
 
     public IEnumerator StatItemCoolTime()
     {
-        StatItemTime = Random.Range(9, 14);
+        StatItemTime = Random.Range(10, 15);
         while (StatItemTime > 0f)
         {
             StatItemTime -= 1f;
@@ -140,7 +141,7 @@ public class GameManager : Singleton<GameManager>
     }
     public IEnumerator HeartItemCoolTime()
     {
-        HeartItemTime = Random.Range(13, 18);
+        HeartItemTime = Random.Range(25, 30);
         while(HeartItemTime > 0f)
         {
             HeartItemTime -= 1f;

@@ -40,19 +40,19 @@ public class SoundContoller : Singleton<SoundContoller>
 
     void SetBGMVolume(bool IsOn)
     {
-        audioMixer.SetFloat("BGMVolume", (IsOn ? 0 : 1) * -80f);
+        audioMixer.SetFloat("BGMVolume", IsOn ? 0f : -80f);
         PlayerPrefsX.SetBool("BGMVolume", IsOn);
     }
 
     void SetSFXVolume(bool IsOn)
     {
-        audioMixer.SetFloat("SFXVolume", (IsOn ? 0 : 1) * -80f);
+        audioMixer.SetFloat("SFXVolume", IsOn ? -10f : -80f);
         PlayerPrefsX.SetBool("SFXVolume", IsOn);
     }
 
     void SetUIVolume(bool IsOn)
     {
-        audioMixer.SetFloat("UIVolume", (IsOn ? 0 : 1) * -80f);
+        audioMixer.SetFloat("UIVolume", IsOn ? 0f : -80f);
         PlayerPrefsX.SetBool("UIVolume", IsOn);
     }
 
