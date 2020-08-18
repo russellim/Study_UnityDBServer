@@ -15,9 +15,15 @@ public class SettingController : MonoBehaviour
 
     private void Start()
     {
-        HandedToggle.onValueChanged.AddListener(delegate { SetHanded(HandedToggle.isOn); });
+        StartInit();
 
+        HandedToggle.onValueChanged.AddListener(delegate { SetHanded(HandedToggle.isOn); PlayButtonSound(); });
+    }
+
+    void StartInit()
+    {
         HandedToggle.isOn = PlayerPrefsX.GetBool("Handed", true);
+        SetHanded(HandedToggle.isOn);
     }
 
     void SetHanded(bool IsOn)
@@ -33,6 +39,9 @@ public class SettingController : MonoBehaviour
             if (IsOn) HPLayoutGroup.childAlignment = TextAnchor.UpperLeft;
             else HPLayoutGroup.childAlignment = TextAnchor.UpperRight;
         }
+    }
+    public void PlayButtonSound()
+    {
         SoundContoller.Instance.ButtonSound.Play();
     }
 }

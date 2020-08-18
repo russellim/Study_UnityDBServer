@@ -83,6 +83,7 @@ public class UIManager : Singleton<UIManager>
     }
     public void OnClickPauseButton()
     {
+        GameManager.Instance.IsPause = true;
         SoundContoller.Instance.PauseSound.Play();
         Time.timeScale = 0f;
         PauseWin.SetActive(true);
@@ -98,6 +99,7 @@ public class UIManager : Singleton<UIManager>
     }
     public void OnClickResumeButton()
     {
+        GameManager.Instance.IsPause = false;
         SoundContoller.Instance.ButtonSound.Play();
         Time.timeScale = 1f;
         PauseWin.SetActive(false);

@@ -34,8 +34,8 @@ public class PlayerAttack : MonoBehaviour
                         CreateBullet(4);
                         break;
                 }
+                AttackSound.Play();
             }
-            AttackSound.Play();
             yield return new WaitForSeconds(1f * Player.Instance.MultiRunningFire);
         }
     }

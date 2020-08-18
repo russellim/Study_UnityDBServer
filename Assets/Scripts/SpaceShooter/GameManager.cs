@@ -18,6 +18,9 @@ public class GameManager : Singleton<GameManager>
     public float StatItemTime = 0f;
     public float HeartItemTime = 0f;
 
+    // 게임상태.
+    public bool IsPause = false;
+
     private void Start()
     {
         HighScore = LoadHighScore();

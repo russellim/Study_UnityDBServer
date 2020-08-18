@@ -12,6 +12,7 @@ public class MainManager : MonoBehaviour
     public void OnClickStartButton()
     {
         SoundContoller.Instance.PlayStartSound.Play();
+        MainUI.SetActive(false);
         LoadingUI.SetActive(true);
     }
     public void OnClickSettingButton()
