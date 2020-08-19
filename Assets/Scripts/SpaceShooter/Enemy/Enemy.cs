@@ -92,6 +92,11 @@ public class Enemy : MonoBehaviour
             Player.Instance.GetDamage();
             StartCoroutine(Die());
         }
+        else if(collision.CompareTag("Special"))
+        {
+            CurrentHP = 0;
+            StartCoroutine(Die());
+        }
     }
 
     virtual public IEnumerator Die()

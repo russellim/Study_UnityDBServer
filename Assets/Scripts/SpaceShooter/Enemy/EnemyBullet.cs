@@ -20,4 +20,12 @@ public class EnemyBullet : MonoBehaviour
     {
         ObjectPool.Instance.PushToPool(gameObject.name, gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Special"))
+        {
+            Disable();
+        }
+    }
 }

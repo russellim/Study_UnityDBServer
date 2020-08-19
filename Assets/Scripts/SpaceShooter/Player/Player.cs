@@ -10,6 +10,7 @@ public class Player : Singleton<Player>
 
     public int FullHP = 5;
     public int CurrentHP = 3;
+    public int SpecialCount = 1;
     public int PowerUp = 1;
     public float MultiBulletSpeed = 1f;
     public float MultiRunningFire = 1f;
@@ -106,6 +107,19 @@ public class Player : Singleton<Player>
             }
         }
 
+        if (!IsDie && collision.CompareTag("Special"))
+        {
+            ObjectPool.Instance.PushToPool("SpecialItem", collision.gameObject);
+            HeartUpSound.Play();
+            if (CurrentHP == 3)
+            {
+                GameManager.Instance.PlusScore(20);
+            }
+            else
+            {
+                GetSpecial();
+            }
+        }
     }
 
     public void GetDamage()
@@ -129,6 +143,12 @@ public class Player : Singleton<Player>
     {
         CurrentHP++;
         UIManager.Instance.UpdateHPUI(CurrentHP, true);
+    }
+    
+    void GetSpecial()
+    {
+        SpecialCount++;
+        UIManager.Instance.UpdateSpecialUI(SpecialCount, true);
     }
 
     IEnumerator Revival()

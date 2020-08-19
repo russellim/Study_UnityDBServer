@@ -123,7 +123,8 @@ public class GameManager : Singleton<GameManager>
         if (HeartItemTime <= 0f)
         {
             GameObject ItemOB;
-            ItemOB = ObjectPool.Instance.PopFromPool("HeartItem");
+            if(Random.Range(0,2) == 0) ItemOB = ObjectPool.Instance.PopFromPool("HeartItem");
+            else ItemOB = ObjectPool.Instance.PopFromPool("SpecialItem");
             ItemOB.transform.SetPositionAndRotation(root.transform.position, root.transform.rotation);
             ItemOB.SetActive(true);
             StartCoroutine(HeartItemCoolTime());

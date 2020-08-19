@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SettingController : MonoBehaviour
 {
-    public RectTransform HPRecttransform;
-    public HorizontalLayoutGroup HPLayoutGroup;
+    public RectTransform HPCountRecttransform;
+    public HorizontalLayoutGroup HPCountLayoutGroup;
+    public RectTransform SpecialCountRecttransform;
+    public HorizontalLayoutGroup SpecialCountLayoutGroup;
+    public RectTransform SpecialButtonRecttransform;
 
     [Header("Setting")]
     //오른쪽기준.
@@ -29,17 +32,27 @@ public class SettingController : MonoBehaviour
     void SetHanded(bool IsOn)
     {
         PlayerPrefsX.SetBool("Handed", IsOn);
-        if (HPRecttransform)
+        if (HPCountRecttransform)
         {
-            int temp = IsOn ? 0 : 1;
-            HPRecttransform.anchorMin = new Vector2(temp, 0);
-            HPRecttransform.anchorMax = new Vector2(temp, 0);
-            HPRecttransform.pivot = new Vector2(temp, 0);
-            HPRecttransform.anchoredPosition = new Vector2(IsOn ? 10 : -10, HPRecttransform.position.y);
-            if (IsOn) HPLayoutGroup.childAlignment = TextAnchor.UpperLeft;
-            else HPLayoutGroup.childAlignment = TextAnchor.UpperRight;
+            SetPosition(HPCountRecttransform, HPCountLayoutGroup, !IsOn);
+            SetPosition(SpecialCountRecttransform, SpecialCountLayoutGroup, !IsOn);
+            SetPosition(SpecialButtonRecttransform, null, IsOn);
         }
     }
+    void SetPosition(RectTransform rt, HorizontalLayoutGroup lg, bool IsOn)
+    {
+        int temp = IsOn ? 0 : 1;
+        rt.anchorMin = new Vector2(temp, 0);
+        rt.anchorMax = new Vector2(temp, 0);
+        rt.pivot = new Vector2(temp, 0);
+        rt.anchoredPosition = new Vector2(IsOn ? 10 : -10, rt.position.y);
+        if(lg)
+        {
+            if (IsOn) lg.childAlignment = TextAnchor.UpperLeft;
+            else lg.childAlignment = TextAnchor.UpperRight;
+        }
+    }
+
     public void PlayButtonSound()
     {
         SoundContoller.Instance.ButtonSound.Play();

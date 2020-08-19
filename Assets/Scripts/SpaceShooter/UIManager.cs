@@ -12,7 +12,10 @@ public class UIManager : Singleton<UIManager>
     public Image ExpProgress;
 
     [SerializeField]
-    GameObject[] HPUI = null;
+    GameObject HPUI = null;
+    [SerializeField]
+    GameObject SpecialUI = null;
+    public Button SpecialButton;
 
     public GameObject PauseButton;
 
@@ -54,11 +57,22 @@ public class UIManager : Singleton<UIManager>
     {
         if(IsHeal)
         {
-            HPUI[CurrentHP - 1].SetActive(true);
+            HPUI.transform.GetChild(CurrentHP-1).gameObject.SetActive(true);
         }
         else
         {
-            HPUI[CurrentHP].SetActive(false);
+            HPUI.transform.GetChild(CurrentHP).gameObject.SetActive(false);
+        }
+    }
+    public void UpdateSpecialUI(int SpacialCount, bool IsGet)
+    {
+        if (IsGet)
+        {
+            SpecialUI.transform.GetChild(SpacialCount - 1).gameObject.SetActive(true);
+        }
+        else
+        {
+            SpecialUI.transform.GetChild(SpacialCount).gameObject.SetActive(false);
         }
     }
 

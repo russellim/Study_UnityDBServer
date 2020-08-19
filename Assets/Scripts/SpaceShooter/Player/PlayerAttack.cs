@@ -47,4 +47,27 @@ public class PlayerAttack : MonoBehaviour
         BulletOB.transform.position = Sockets[SocketNumber].position;
         BulletOB.SetActive(true);
     }
+
+    public void OnClickSpecialAttack()
+    {
+        if(Player.Instance.SpecialCount == 0)
+        {
+            return;
+        }
+        Player.Instance.SpecialCount--;
+        UIManager.Instance.UpdateSpecialUI(Player.Instance.SpecialCount, false);
+        StartCoroutine(SpecialAttack());
+    }
+
+    IEnumerator SpecialAttack()
+    {
+        UIManager.Instance.SpecialButton.interactable = false;
+        GameObject OB;
+        OB = ObjectPool.Instance.PopFromPool("SpecialAttack");
+        OB.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+        UIManager.Instance.SpecialButton.interactable = true;
+        ObjectPool.Instance.PushToPool("SpecialAttack", OB);
+    }
 }
