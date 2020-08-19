@@ -43,7 +43,7 @@ public class GameManager : Singleton<GameManager>
                 case 1:
                     CreateEnemy("Enemy_Type1", -3.23f, 1f);
                     CreateEnemy("Enemy_Type1", -1f, 3.23f);
-                    yield return new WaitForSeconds(Random.Range(3f * MultiEnemySpawnTime, 4f * MultiEnemySpawnTime));
+                    yield return new WaitForSeconds(Random.Range(2f * MultiEnemySpawnTime, 3f * MultiEnemySpawnTime));
                     break;
                 case 2:
                     CreateEnemy("Enemy_Type2s", -1f, 1f);
@@ -56,7 +56,7 @@ public class GameManager : Singleton<GameManager>
                     CreateEnemy("Enemy_Type3", new Vector2(num * 4.36f, -0.45f));
                     yield return new WaitForSeconds(0.5f * MultiEnemySpawnTime);
                     CreateEnemy("Enemy_Type3", new Vector2(num * 4.36f, -0.45f));
-                    yield return new WaitForSeconds(Random.Range(2f * MultiEnemySpawnTime, 3f * MultiEnemySpawnTime));
+                    yield return new WaitForSeconds(Random.Range(2f * MultiEnemySpawnTime, 2.5f * MultiEnemySpawnTime));
                     break;
             }
         }

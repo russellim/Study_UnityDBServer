@@ -45,7 +45,7 @@ public class SettingController : MonoBehaviour
         rt.anchorMin = new Vector2(temp, 0);
         rt.anchorMax = new Vector2(temp, 0);
         rt.pivot = new Vector2(temp, 0);
-        rt.anchoredPosition = new Vector2(IsOn ? 10 : -10, rt.position.y);
+        rt.anchoredPosition = new Vector2(IsOn ? 10 : -10, rt.anchoredPosition.y);
         if(lg)
         {
             if (IsOn) lg.childAlignment = TextAnchor.UpperLeft;

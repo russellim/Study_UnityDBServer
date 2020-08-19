@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainManager : MonoBehaviour
+public class MainManager : Singleton<MainManager>
 {
     public GameObject MainUI;
     public GameObject LoadingUI;
@@ -45,5 +45,13 @@ public class MainManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public Text ErrorMessageText;
+    public Animator ErrorMessageAnim;
+    public void DebugMessage(string ErrorText)
+    {
+        ErrorMessageText.text = ErrorText;
+        ErrorMessageAnim.Play("ErrorTextAnim");
     }
 }

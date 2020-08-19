@@ -135,6 +135,7 @@ public class Player : Singleton<Player>
         }
         else
         {
+            PowerUp = 1;
             StartCoroutine(Revival());
         }
     }
@@ -182,6 +183,7 @@ public class Player : Singleton<Player>
         IsDie = true;
         spriteRenderer.enabled = false;
         col.enabled = false;
+        UIManager.Instance.SpecialButton.interactable = false;
 
         ExplosionParticle.Play();
 

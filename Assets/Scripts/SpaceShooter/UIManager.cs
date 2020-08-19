@@ -27,6 +27,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject LoadingUI;
     public GameObject SettingWin;
 
+    public Button GameOverBackButton;
+
     public void UpdatePlayerScoreUI(int Score)
     {
         PlayerScore.text = Score.ToString("000000");
@@ -132,7 +134,6 @@ public class UIManager : Singleton<UIManager>
     }
     public void OnClickMainButton()
     {
-        SoundContoller.Instance.ButtonSound.Play();
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }

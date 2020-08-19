@@ -7,7 +7,6 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Firebase.Auth;
 using System;
-using UnityEngine.UI.TableUI;
 
 [Serializable]
 public class PlayerScoreDB
@@ -39,16 +38,20 @@ public class DataBridge : MonoBehaviour
     public GameObject LoadingImage;
 
     private PlayerScoreDB data;
-    private string DATA_URL = "https://fir-and-unity-tutorial-fa8d9.firebaseio.com/";
     private DatabaseReference databaseReference;
+    private FirebaseUser m_firebaseUser = null;
 
     List<PlayerScoreDB> temp1;
     List<PlayerScoreDB> temp2;
 
     private void Start()
     {
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DATA_URL);
+        MainManager.Instance.DebugMessage("Start DataBridge");
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://fir-and-unity-tutorial-fa8d9.firebaseio.com/");
+        MainManager.Instance.DebugMessage("1");
+
         databaseReference = FirebaseDatabase.DefaultInstance.GetReference("PlayerScore");
+        MainManager.Instance.DebugMessage("2");
         temp1 = new List<PlayerScoreDB>();
         temp2 = new List<PlayerScoreDB>();
     }
@@ -70,12 +73,16 @@ public class DataBridge : MonoBehaviour
 
     public void OnClickRank()
     {
+        MainManager.Instance.DebugMessage("Start On Click Rank");
+
         RankWin.SetActive(true);
         rankTable.FirstToggle.isOn = true;
         LoadScoreRankData();
         LoadTimeRankData();
         StartCoroutine(ShowScoreRankTable());
         StartCoroutine(ShowTimeRankTable());
+
+        MainManager.Instance.DebugMessage("End On Click Rank");
     }
 
     public void SaveData()
@@ -96,16 +103,20 @@ public class DataBridge : MonoBehaviour
         databaseReference.Push().SetRawJsonValueAsync(jsonData);
         //databaseReference.Child("Users").SetRawJsonValueAsync(jsonData);
         UIManager.Instance.OnClickRankingCancelButton();
+        UIManager.Instance.GameOverBackButton.interactable = false;
         OnClickRank();
     }
 
     public void LoadScoreRankData()
     {
+        MainManager.Instance.DebugMessage("Start LoadScoreRankData");
+
         temp1.Clear();
         databaseReference.OrderByChild("Score").LimitToLast(10).GetValueAsync().ContinueWith(task =>
        {
            if (task.IsCompleted)
            {
+               MainManager.Instance.DebugMessage("IsCompleted");
                DataSnapshot snapshot = task.Result;
 
                //저장을 SetRawJsonValueAsync로 했으므로 GetRawJsonValue.
