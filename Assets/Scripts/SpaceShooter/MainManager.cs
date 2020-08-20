@@ -46,12 +46,4 @@ public class MainManager : Singleton<MainManager>
         Application.Quit();
 #endif
     }
-
-    public Text ErrorMessageText;
-    public Animator ErrorMessageAnim;
-    public void DebugMessage(string ErrorText)
-    {
-        ErrorMessageText.text = ErrorText;
-        ErrorMessageAnim.Play("ErrorTextAnim");
-    }
 }
