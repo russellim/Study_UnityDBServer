@@ -5,10 +5,10 @@
 
 ## 기본환경
 - unity ver: 2019.4.7f
-- use sdk: Firebase Database 6.15.2 (점수 랭킹 저장, 불러오기)
+- Firebase Database 6.15.2
 
 
-## 기능
+## 간략기능
 - Player has level, exp and hp, Status
 - Player Attack Status
 - Player special attack
