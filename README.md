@@ -1,9 +1,11 @@
 # Space Shooter :rocket:
+<br>
 
 ## 기본환경
 - unity ver: 2019.4.7f
 - Firebase Database 6.15.2
 
+<br>
 
 ## 간략기능
 - Player has level, exp and hp, Status
@@ -14,6 +16,7 @@
 - Items(Heart, PowerUp, Special)
 - Setting(sound on/off, handed)
 
+<br>
 
 ## 주요기능상세
 - json 파싱
@@ -29,11 +32,13 @@
     },
     ... ] }
 ```
+<br>
 
 - Object Pooling
 
 오브젝트 Instatiate와 Destroy시의 가비지 콜렉터(GC)를 줄이기 위해 미리 오브젝트를 만들고 활성/비활성으로 재사용. 게임 내내 생성되는 총알, 적 기체, 폭발 이펙트 등을 미리 풀링함.
 
+<br>
 
 - Firebase Database
 
@@ -44,6 +49,8 @@
   <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873089-86aac100-e3d8-11ea-970d-e8b27ada8f94.jpg">
 </div>
 
+<br>
+<br>
 
 - Audio Mixer
 
@@ -52,6 +59,8 @@ Groups 목록(BGM, SFX, UI Sound)생성. Audio Source 컴포넌트의 Output에 
   <img width="500" src = "https://user-images.githubusercontent.com/38000693/90873098-890d1b00-e3d8-11ea-987b-a981915db176.jpg">
 </div>
 
+<br>
+<br>
 
 ## 스크린샷
 
