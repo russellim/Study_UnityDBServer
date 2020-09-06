@@ -19,6 +19,19 @@
 <br>
 
 ## 주요기능상세
+- Firebase Database vs PHPServer(Updating...)
+
+스코어 저장/불러오기. 플레이어닉네임(게임오버시 입력)/레벨/스코어/게임시간을 저장.
+<div>
+  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873095-88748480-e3d8-11ea-98d9-a1eefbb0fc3f.jpg">
+  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873088-86122a80-e3d8-11ea-8f0e-fc6f4bacbadf.jpg">
+  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873089-86aac100-e3d8-11ea-970d-e8b27ada8f94.jpg">
+</div>
+
+<br>
+<br>
+
+
 - json 파싱
 
 플레이어 레벨에 따른 능력치 표를 불러오는데 사용.
@@ -37,17 +50,6 @@
 - Object Pooling
 
 오브젝트 Instatiate와 Destroy시의 가비지 콜렉터(GC)를 줄이기 위해 미리 오브젝트를 만들고 활성/비활성으로 재사용. 게임 내내 생성되는 총알, 적 기체, 폭발 이펙트 등을 미리 풀링함.
-
-<br>
-
-- Firebase Database
-
-스코어 저장/불러오기. 플레이어닉네임(게임오버시 입력)/레벨/스코어/게임시간을 저장.
-<div>
-  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873095-88748480-e3d8-11ea-98d9-a1eefbb0fc3f.jpg">
-  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873088-86122a80-e3d8-11ea-8f0e-fc6f4bacbadf.jpg">
-  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873089-86aac100-e3d8-11ea-970d-e8b27ada8f94.jpg">
-</div>
 
 <br>
 <br>
