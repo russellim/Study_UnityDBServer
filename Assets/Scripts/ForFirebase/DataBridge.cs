@@ -7,6 +7,7 @@ using Firebase.Database;
 using Firebase.Unity.Editor;
 using Firebase.Auth;
 using System;
+using UnityEngine.Networking;
 
 [Serializable]
 public class PlayerScoreDB
@@ -39,6 +40,9 @@ public class DataBridge : MonoBehaviour
 
     private PlayerScoreDB data;
     private DatabaseReference databaseReference;
+
+    // phplocalhost server.
+    string _path = "http://neneg.dothome.co.kr/UnityBackendTutorial/";
 
     List<PlayerScoreDB> temp1;
     List<PlayerScoreDB> temp2;
@@ -90,13 +94,48 @@ public class DataBridge : MonoBehaviour
         string jsonData = JsonUtility.ToJson(data);
 
 
+        // 파이어베이스 저장.
         // Push()로 고유키값 만들어짐.
         databaseReference.Push().SetRawJsonValueAsync(jsonData);
         //databaseReference.Child("Users").SetRawJsonValueAsync(jsonData);
+
+        // PHP서버 저장.
+        StartCoroutine(AddPlayerScore_PHPServer());
+
+
         UIManager.Instance.OnClickRankingCancelButton();
         UIManager.Instance.GameOverBackButton.interactable = false;
         OnClickRank();
+
     }
+
+    public IEnumerator AddPlayerScore_PHPServer()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("Date", data.Date);
+        form.AddField("Level", data.Level);
+        form.AddField("Name", data.Name);
+        form.AddField("Score", data.Score);
+        form.AddField("Time", data.Time.ToString());
+
+        using (UnityWebRequest www = UnityWebRequest.Post(_path + "AddPlayerScore.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                string resultText = www.downloadHandler.text;
+                Debug.Log(resultText);
+            }
+        }
+    }
+
+
+
 
     public void LoadScoreRankData()
     {
