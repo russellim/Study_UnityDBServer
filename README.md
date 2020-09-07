@@ -4,6 +4,7 @@
 ## 기본환경
 - unity ver: 2019.4.7f
 - Firebase Database 6.15.2
+- PHP7.3, Apach2.2, MySQL5.7
 
 <br>
 
@@ -19,18 +20,34 @@
 <br>
 
 ## 주요기능상세
-- Firebase Database vs PHPServer(Updating...)
+- Firebase Database vs PHPServer
 
 스코어 저장/불러오기. 플레이어닉네임(게임오버시 입력)/레벨/스코어/게임시간을 저장.
 <div>
-  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873095-88748480-e3d8-11ea-98d9-a1eefbb0fc3f.jpg">
-  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873088-86122a80-e3d8-11ea-8f0e-fc6f4bacbadf.jpg">
-  <img width="200" src = "https://user-images.githubusercontent.com/38000693/90873089-86aac100-e3d8-11ea-970d-e8b27ada8f94.jpg">
+  <img width="300" src = "https://user-images.githubusercontent.com/38000693/92399193-d7eeda80-f164-11ea-8943-ee94685445fc.PNG">Firebase Database
 </div>
 
+적용이 간단하다 (메뉴얼만 따라하면 ok), 유니티 내의 코드만 있으면 된다.  
+데이터를 테이블이 아닌 Json구조로 볼 수 있다. 테이블로 확인해야하는 데이터라면 적절하지 않을수도.  
+그 대신 확장성은 자유자재.
+  
 <br>
-<br>
+<div>
+  <img width="500" src = "https://user-images.githubusercontent.com/38000693/92399189-d6bdad80-f164-11ea-9d13-9ad74854c754.PNG">PHPmyadmin
+</div>
 
+사용하기 위해 준비해야 할 것이 많다. 사용할 쿼리를 .php 파일을 따로 작성해서 디렉토리에 넣어줘야한다.  
+게임 내에서 텍스트를 입력받아 저장하는 경우, 보안에 문제가 생길 수 있다. (테이블 통째로 날려버리기 같은 심각한 문제)
+<br>
+<br>
+랭킹 창
+<div>
+  <img width="300" src = "https://user-images.githubusercontent.com/38000693/90873095-88748480-e3d8-11ea-98d9-a1eefbb0fc3f.jpg">
+  <img width="300" src = "https://user-images.githubusercontent.com/38000693/90873088-86122a80-e3d8-11ea-8f0e-fc6f4bacbadf.jpg">
+  <img width="300" src = "https://user-images.githubusercontent.com/38000693/90873089-86aac100-e3d8-11ea-970d-e8b27ada8f94.jpg">
+</div>
+<br>
+<br>
 
 - json 파싱
 
