@@ -8,6 +8,7 @@ using Firebase.Unity.Editor;
 using Firebase.Auth;
 using System;
 using UnityEngine.Networking;
+using SimpleJSON;
 
 [Serializable]
 public class PlayerScoreDB
@@ -75,7 +76,7 @@ public class DataBridge : MonoBehaviour
         RankWin.SetActive(true);
         rankTable.FirstToggle.isOn = true;
         LoadScoreRankData();
-        LoadTimeRankData();
+        StartCoroutine(LoadTimeRankData());
         StartCoroutine(ShowScoreRankTable());
         StartCoroutine(ShowTimeRankTable());
     }
@@ -163,32 +164,55 @@ public class DataBridge : MonoBehaviour
            }
        });
     }
-    public void LoadTimeRankData()
+    public IEnumerator LoadTimeRankData()
     {
         temp2.Clear();
-        databaseReference.OrderByChild("Time").LimitToLast(10).GetValueAsync().ContinueWith(task =>
+        bool IsDone = false;
+
+        JSONArray jsonArray = null;
+        Action<string>_getPlayerScoreCallback = (PlayerScores) =>
         {
-            if (task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result;
+            IsDone = true;
+            jsonArray = JSON.Parse(PlayerScores) as JSONArray;
 
-                //저장을 SetRawJsonValueAsync로 했으므로 GetRawJsonValue.
-                string PlayerData = snapshot.GetRawJsonValue();
-                print("Data is " + PlayerData);
+        };
+        StartCoroutine(GetPlayerScore_PHPServer(_getPlayerScoreCallback));
 
-                PlayerScoreDB m = JsonUtility.FromJson<PlayerScoreDB>(PlayerData);
+        yield return new WaitUntil(() => IsDone == true);
 
-                foreach (var child in snapshot.Children)
-                {
-                    string t = child.GetRawJsonValue();
-                    //PlayerScoreDB extractedData = JsonUtility.FromJson<PlayerScoreDB>(t);
-                    temp2.Add(JsonUtility.FromJson<PlayerScoreDB>(t));
-                }
-                print("ok complete!");
-                temp2.Reverse();
-            }
-        });
+        for (int i = 0; i < jsonArray.Count; ++i)
+        {
+            temp2.Add(new PlayerScoreDB(jsonArray[i].AsObject["Name"],
+                                        jsonArray[i].AsObject["Level"].AsInt,
+                                        0,
+                                        jsonArray[i].AsObject["Time"]));
+        }
+        print("ok complete! 2");
     }
+
+    public IEnumerator GetPlayerScore_PHPServer(System.Action<string> callback)
+    {
+        WWWForm form = new WWWForm();
+
+        using (UnityWebRequest www = UnityWebRequest.Post(_path + "GetPlayerScore.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                string jsonArray = www.downloadHandler.text;
+
+                //Call callback function to pass results
+                //와우 코루틴에서 반환값이 생기넹.
+                callback(jsonArray);
+            }
+        }
+    }
+
 
     IEnumerator ShowScoreRankTable()
     {
