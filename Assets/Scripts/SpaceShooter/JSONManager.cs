@@ -17,7 +17,6 @@ public class JSONManager : Singleton<JSONManager>
         TextAsset textAsset = Resources.Load(FilePath) as TextAsset;
         JSONNode root = JSON.Parse(textAsset.text);
         JSONNode item = root["PlayerLevel"];
-        print(root);
         for(int i=0; i<item.Count; ++i)
         {
             JSONNode itemdata = item[i];

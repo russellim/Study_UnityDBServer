@@ -164,6 +164,7 @@ public class DataBridge : MonoBehaviour
            }
        });
     }
+
     public IEnumerator LoadTimeRankData()
     {
         temp2.Clear();
